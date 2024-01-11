@@ -1,7 +1,7 @@
 # Project template
 
 Project template for setting up a directory and file structure for a new research project.
-The intended contents of each directory is explained in separate README.md files.
+The intended contents of each directory is explained in separate README.md files. 
 
 ## Overview
 
