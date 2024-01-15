@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 import argparse
@@ -15,11 +15,11 @@ TO DO
 parser = argparse.ArgumentParser("Parses kmindex output")
 parser.add_argument("-k", "--kmindex", dest="kmindex", type=str, nargs="+", help="kmindex output file (tsv)", required=True)
 parser.add_argument("-t", "--taxa", dest="taxa_file", type=str,  help="Mapping file of ID to taxa (tsv)", required=True)
-parser.add_argument("-i", "--ID", dest="search_ID", type=str, help="IDs of reads that will be output (regex supported)", required=True)
+parser.add_argument("-i", "--ID", dest="search_ID", type=str, help="IDs of reads that will be output (regex supported)", required=False, default=".*")
 parser.add_argument("-n", "--names", dest="names", type=str, help="NCBI names.dmp file.", required=False, default="/usr/share/names.dmp")
 parser.add_argument("-s", "--nodes", dest="nodes", type=str, help="NCBI nodes.dmp file.", required=False, default="/usr/share/nodes.dmp")
 parser.add_argument("-m", "--merged", dest="merged", type=str, help="NCBI merged.dmp file.", required=False, default="/usr/share/merged.dmp")
-parser.add_argument("-c", "--cutoff", dest="cutoff", type=float, help="Value which matches are cutoff under (def=0.5)", required=False, default=0.5)
+parser.add_argument("-c", "--cutoff", dest="cutoff", type=float, help="Value which matches are cutoff under (def=0.7)", required=False, default=0.7)
 parser.add_argument("-l", "--lengths", dest="lengths", type=str, help="File of header names and sequences lengths", required=False)
 args = parser.parse_args()
 

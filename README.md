@@ -2,6 +2,20 @@
 
 Documentation and code for wholeskim pipeline.
 
+## Workflow
+
+`prep_indices.sh input_directory kmer_size min_group_size max_group_size`
+
+Creates optimimzed indices 
+
+`kmindex query -i index_project -a -z 3 -f matrix -q query.fastq`
+
+Queries indices with kmindex
+
+`parse_kmindex.py -k kmindex_outputs -t index_to_taxid_map.txt`
+
+Assigns reads to lowest common ancestor (LCA)
+
 ## Overview
 
 ```
