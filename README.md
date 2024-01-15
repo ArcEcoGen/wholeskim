@@ -4,17 +4,11 @@ Documentation and code for wholeskim pipeline.
 
 ## Workflow
 
-`prep_indices.sh input_directory kmer_size min_group_size max_group_size`
+`prep_indices.sh`: Create optimimzed indices from genome skims
 
-Creates optimimzed indices 
+`kmindex`: Query indices with eDNA sequences
 
-`kmindex query -i index_project -a -z 3 -f matrix -q query.fastq`
-
-Queries indices with kmindex
-
-`parse_kmindex.py -k kmindex_outputs -t index_to_taxid_map.txt`
-
-Assigns reads to lowest common ancestor (LCA)
+`parse_kmindex.py`: Assign reads to lowest common ancestor (LCA)
 
 ## Overview
 
@@ -23,12 +17,10 @@ project
 |- doc/                documentation for the study
 |
 |- data/               raw and primary data, essentially all input files, never edit!
-|  |- raw_external/
-|  |- raw_internal/
-|  |- meta/
+|  |- example_workflow
+|     |- genome_skims
 |
 |- code/               all code needed to go from input files to final results
-|- notebooks/
 |
 |- intermediate/       output files from different analysis steps, can be deleted
 |- scratch/            temporary files that can be safely deleted or lost
@@ -37,11 +29,25 @@ project
 |- results/            output from workflows and analyses
 |  |- figures/
 |  |- tables/
-|  |- reports/
 |
-|- .gitignore          sets which parts of the repository that should be git tracked
-|- Snakefile           project workflow, carries out analysis contained in code/
-|- config.yml          configuration of the project workflow
-|- environment.yml     software dependencies list, used to create a project environment
-|- Dockerfile          recipe to create a project container
+|- dockerfile          recipe to create a project container
 ```
+
+## Example workflow
+
+The following is a short tutorial on using `wholeskim` with 5 reference genome skims and simulated eDNA reads.
+
+```
+| Species               | Taxon ID | Sequencing code |
+|-----------------------|----------|-----------------|
+| Betula nana           | 1623466  | BMB_CC          |
+| Carex maritima        | 240694   | BMB_BQ          |
+| Empetrum nigrum       | 191066   | BXA_CKW         |
+| Vaccinium uliginosum  | 190548   | CDM_APU         |
+| Vaccinium vitis-idaea | 180772   | BMB_HT          |
+```
+
+Launch the docker image interactively and mount the `data/` directory in the container so all files are accessible
+
+`docker run -v ./data:/root/data -it wholeskim_image`
+
