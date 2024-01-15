@@ -10,13 +10,14 @@ COPY intermediate/names.dmp intermediate/nodes.dmp intermediate/merged.dmp ./
 # Copy scripts
 WORKDIR /usr/app/src
 COPY code/prep_indices.sh code/parse_kmindex.py code/vis_assigment.py  ./
-COPY intermediate/ntCard ./
+COPY intermediate/ntCard ./ntCard
 
 # Install ntcard
 WORKDIR /usr/app/src/ntCard
-RUN cd /usr/app/src/ntCard && ./autogen.sh
+RUN ./autogen.sh
 RUN ./configure
 RUN make
 RUN make install
 
+WORKDIR ~
 ENTRYPOINT /bin/bash

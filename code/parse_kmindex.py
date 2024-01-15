@@ -3,13 +3,6 @@
 import sys
 import argparse
 import re
-#import pprint
-#import copy
-
-'''
-TO DO
-- Think of ways to visualize the data.
-'''
 
 # Argument parsing
 parser = argparse.ArgumentParser("Parses kmindex output")
