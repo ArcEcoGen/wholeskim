@@ -5,26 +5,17 @@
 # kmtricks
 # parallel
 
-source /applis/site/nix.sh
-
-source /applis/environments/conda.sh
-conda activate ~/.conda/envs/kmindex_2
-
-#### TODO ####
-# It could be nice to make a list of jobs to submit to OAR instead of processing linearly
-# Many options here are gricad-dependent, these should probably be edited before full release
-
 INPUTDIRECT=$1
 KMER_SIZE=$2
-GROUP_SIZE=$3
+MIN_GROUP=$3
 MAX_GROUP=$4
 
 # The number of unique kmer difference to divide subsets
 KMER_DIFF_THRESH=100000000
 
 # Set this value to the number of CPUs available
-N_CPU=$(oarprint core | wc -l)
-#N_CPU=16
+# N_CPU=$(oarprint core | wc -l)
+N_CPU=16
 
 DIRECTBASE=$(basename $INPUTDIRECT)
 
@@ -50,8 +41,8 @@ BUFFER_KMER="0"
 # Clears subset files
 rm -f ${DIRECTBASE}_[0-9]*.txt
 
-# Group minimum $GROUP_SIZE number of files into kmtricks input files
-while mapfile -t -n $GROUP_SIZE ary && ((${#ary[@]}))
+# Group minimum $MIN_GROUP number of files into kmtricks input files
+while mapfile -t -n $MIN_GROUP ary && ((${#ary[@]}))
 do
 	LINE1=(${ary[0]})
 	UNIQ_KMER=${LINE1[1]}
