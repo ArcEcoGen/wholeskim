@@ -7,8 +7,10 @@
 
 INPUTDIRECT=$1
 KMER_SIZE=$2
-MIN_GROUP=$3
-MAX_GROUP=$4
+MAX_GROUP=$3
+
+# The minimum number of skims to be included in one group. Should be divisible by 8 for storage efficiency
+MIN_GROUP=8
 
 # The number of unique kmer difference to divide subsets
 KMER_DIFF_THRESH=100000000
@@ -23,7 +25,7 @@ DIRECTBASE=$(basename $INPUTDIRECT)
 if [[ ! -f "${DIRECTBASE}_kmercount.tmp" ]]
 then
 	# Computes kmers for each file in directory (~20 seconds per file in directory)
-	for f in $1*.fast?.gz
+	for f in $1*.fast?*
 	do
 		echo "echo \$(readlink -e $f) \$(ntcard -k $2 -o /dev/null $f 2>&1 | head -2 | tail -1) >> ${DIRECTBASE}_kmercount.tmp" 
 	done | parallel -j $N_CPU
