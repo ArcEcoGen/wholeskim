@@ -4,8 +4,9 @@ import sys
 import argparse
 
 '''
-Parsing kmindex output assingments for visualization
-Do cut -f 6 | sort | uniq -c before processing
+Parsing kmindex output assingments for visualization on successful assignment to one taxon
+ASSUMES INPUT EDNA SAMPLE IS ENTIRELY FROM ONE TAXON
+cut -f 6 $f | sort | uniq -c before processing
 '''
 
 parser = argparse.ArgumentParser("Parses kmindex output")
@@ -133,7 +134,7 @@ relevant_taxids = collect_taxids(args.taxon)
 for f in args.kmindex:
 
     taxa_readcount = {"unid" : 0, "off_target" : 0, "off_genus" : 0, "off_family" : 0, "target" : 0, "higher_taxa": 0, "higher_genus" : 0, "higher_family" : 0}
-    cutoff = f.split(".")[0].split("_")[0]
+    prefix = f.split(".")[0].split("_")[0]
 
     for l_list in line_splitter(f, sep=" "):
         if int(l_list[0]) < args.cutoff or l_list[1] == "0":
@@ -159,24 +160,24 @@ for f in args.kmindex:
     # Output
     for item in taxa_readcount:
         try:
-            print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
+            print(f"{prefix}{args.suffix}\t{item}\t{taxa_readcount[item]}")
         except KeyError as e:
             if item == "unid":
-                print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
+                print(f"{prefix}{args.suffix}\t{item}\t{taxa_readcount[item]}")
             elif item == "off_target":
-                print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
+                print(f"{prefix}{args.suffix}\t{item}\t{taxa_readcount[item]}")
             elif item == "off_genus":
-                print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
+                print(f"{prefix}{args.suffix}\t{item}\t{taxa_readcount[item]}")
             elif item == "off_family":
-                print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
+                print(f"{prefix}{args.suffix}\t{item}\t{taxa_readcount[item]}")
             elif item == "target":
-                print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
+                print(f"{prefix}{args.suffix}\t{item}\t{taxa_readcount[item]}")
             elif item == "higher_taxa":
-                print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
+                print(f"{prefix}{args.suffix}\t{item}\t{taxa_readcount[item]}")
             elif item == "higher_genus":
-                print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
+                print(f"{prefix}{args.suffix}\t{item}\t{taxa_readcount[item]}")
             elif item == "higher_family":
-                print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
+                print(f"{prefix}{args.suffix}\t{item}\t{taxa_readcount[item]}")
                 
 
 

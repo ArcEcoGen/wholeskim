@@ -2,7 +2,7 @@
 .*
 ~*
 
-# ignore intermediate, logs and scratch dirs
+# ignore intermediate, logs, output, and scratch dirs
 intermediate
 logs
 scratch
