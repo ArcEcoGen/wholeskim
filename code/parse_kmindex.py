@@ -102,47 +102,6 @@ def consensusHits(tl):
     # If no disagreement, return the last element
     return tl[0][find_min_list(tl)-1]
 
-#Traces the path of a given taxid to root node, compiling taxonomy names along the way and returning a dict
-def parseToRoot(ti):
-	taxonomy = {
-		"phylum" : "NA", 
-		"class" : "NA",
-		"order" : "NA",
-		"family" : "NA",
-		"genus" : "NA",
-		"species" : "NA"
-	}
-    # If unidentified
-	if ti == "0":
-		return taxonomy
-
-	#While not at the root node
-	while (ti != "1"):
-		#Adds names to taxonomy dictionary while tracing rootward
-		try:
-			level_name = name_dict[ti]
-			(ti,level) = parent_dict[ti]
-			if level in taxonomy:
-				taxonomy[level] = level_name
-		#Catches if a taxid isn't present in names.dmp or nodes.dmp 
-		except KeyError as e:
-			#print("Taxid: {} not found in either names.dmp or nodes.dmp, looking in merged.dmp".format(ti), file=sys.stderr)
-			#Looks through merged.dmp for 
-			for tokens in line_splitter(args.merged):
-				found = False
-				#If the taxid is found
-				if tokens[0] == ti:
-					ti = tokens[2]
-					found = True
-					#print("Taxid: {} match found in merged.dmp".format(ti), file=sys.stderr)
-					break
-			if not found:
-				print("Taxid: {} not found in merged.dmp! Try downloading an updated taxdump".format(ti), file=sys.stderr)
-				break
-			
-	return taxonomy
-
-
 ######## SCRIPT ##########
 
 # Dictionary of {fastq_header : length}
@@ -226,8 +185,6 @@ for r in reads_list:
             tid = taxa_dict[kmindex_dict[r][0][1]]
             matches = 1
             max_ID = kmindex_dict[r][0][0]    
-        
-        taxonomy = parseToRoot(tid)
 
     # Else, get consensus taxonomy
     else:
@@ -250,7 +207,6 @@ for r in reads_list:
             taxid_list.append(fulltax_dict[tid])
 
         tid = consensusHits(taxid_list)
-        taxonomy = parseToRoot(tid)
         matches = len(kmindex_dict[r])
 
     # Adds length information if provided
@@ -278,9 +234,3 @@ for r in reads_list:
             print("Taxid: {} not found in merged.dmp! Try downloading an updated taxdump".format(ti), file=sys.stderr)
             break
         print(f"{first_columns}\t{max_ID}\t{matches}\t{tid}\tunk_{tid}", end="")
-    
-    for l in tax_order:
-        print(f"\t{taxonomy[l]}", end="")
-    print()
-    
-    
