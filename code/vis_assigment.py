@@ -5,17 +5,16 @@ import argparse
 
 '''
 Parsing kmindex output assingments for visualization
-Do cut -f 5 | sort | uniq -c before processing
-Files must end in cutoff #
+Do cut -f 6 | sort | uniq -c before processing
 '''
 
 parser = argparse.ArgumentParser("Parses kmindex output")
 parser.add_argument("-k", "--kmindex", dest="kmindex", type=str, nargs="+", help="kmindex taxa count", required=True)
-parser.add_argument("-n", "--names", dest="names", type=str, help="NCBI names.dmp file.", required=False, default="/usr/share/names.dmp")
-parser.add_argument("-s", "--nodes", dest="nodes", type=str, help="NCBI nodes.dmp file.", required=False, default="/usr/share/nodes.dmp")
-parser.add_argument("-m", "--merged", dest="merged", type=str, help="NCBI merged.dmp file.", required=False, default="/usr/share/merged.dmp")
-parser.add_argument("-t", "--taxon", dest="taxon", type=str, help="True taxon of interest", required=True)
+parser.add_argument("-t", "--taxon", dest="taxon", type=str, help="True taxid of interest", required=True)
 parser.add_argument("-c", "--cutoff", dest="cutoff", type=int, help="Minimum number of reads", required=True)
+parser.add_argument("-n", "--names", dest="names", type=str, help="NCBI names.dmp file. Default is /usr/share/names.dmp", required=False, default="/usr/share/names.dmp")
+parser.add_argument("-s", "--nodes", dest="nodes", type=str, help="NCBI nodes.dmp file. Default is /usr/share/nodes.dmp", required=False, default="/usr/share/nodes.dmp")
+parser.add_argument("-m", "--merged", dest="merged", type=str, help="NCBI merged.dmp file. Default is /usr/share/merged.dmp", required=False, default="/usr/share/merged.dmp")
 parser.add_argument("-x", "--suffix", dest="suffix", type=str, help="Suffix to output to taxa name", required=False, default="")
 args = parser.parse_args()
 
@@ -160,24 +159,24 @@ for f in args.kmindex:
     # Output
     for item in taxa_readcount:
         try:
-            print(f"{cutoff}{args.suffix}\t{item}\t{name_dict[item]}\t{parent_dict[item][1]}\t{taxa_readcount[item]}")
+            print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
         except KeyError as e:
             if item == "unid":
-                print(f"{cutoff}{args.suffix}\t{item}\t{'unid'}\t{'unid'}\t{taxa_readcount[item]}")
+                print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
             elif item == "off_target":
-                print(f"{cutoff}{args.suffix}\t{item}\t{'off_target'}\t{'off_target'}\t{taxa_readcount[item]}")
+                print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
             elif item == "off_genus":
-                print(f"{cutoff}{args.suffix}\t{item}\t{'genus'}\t{'genus'}\t{taxa_readcount[item]}")
+                print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
             elif item == "off_family":
-                print(f"{cutoff}{args.suffix}\t{item}\t{'family'}\t{'family'}\t{taxa_readcount[item]}")
+                print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
             elif item == "target":
-                print(f"{cutoff}{args.suffix}\t{item}\t{'target'}\t{'target'}\t{taxa_readcount[item]}")
+                print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
             elif item == "higher_taxa":
-                print(f"{cutoff}{args.suffix}\t{item}\t{'higher_taxa'}\t{'higher_taxa'}\t{taxa_readcount[item]}")
+                print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
             elif item == "higher_genus":
-                print(f"{cutoff}{args.suffix}\t{item}\t{'higher_genus'}\t{'higher_genus'}\t{taxa_readcount[item]}")
+                print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
             elif item == "higher_family":
-                print(f"{cutoff}{args.suffix}\t{item}\t{'higher_family'}\t{'higher_family'}\t{taxa_readcount[item]}")
+                print(f"{cutoff}{args.suffix}\t{item}\t{taxa_readcount[item]}")
                 
 
 
