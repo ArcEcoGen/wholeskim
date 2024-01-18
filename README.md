@@ -53,10 +53,20 @@ Launch the docker image interactively and mount the `data/` directory in the con
 `docker run -v ./data:/root/data -it wholeskim_image`
 
 Create indices for the genome skims provided. `prep_indices.sh` will index every fastx file present in the provided directoy. KMER_SIZE is set to 31 and a MAX_GROUP size is set to 8 (which is irrelevant since there are only 5 skims present).
-```
-cd data/example_project
-prep_indices.sh genome_skims/ 31 8 8
-```
-Query the indices with simulated eDNA *Vaccinium uliginosum* reads. 
 
-`kmindex query -i genome_skims_proj/ -z 3 -t 1 -f matrix -q vaculi_merged.fastq -o genome_skim_out`
+`cd data/example_workflow/output`
+`prep_indices.sh /root/data/example_workflow/input/example_skims/ 31 8`
+
+Query the indices with simulated eDNA *Vaccinium uliginosum* reads.
+
+`kmindex query -i example_skims_proj/ -z 3 -t 1 -f matrix -q /root/data/example_workflow/input/vaculi_merged.fastq -o exskims_out`
+
+Assign LCA to each read. 
+
+`parse_kmindex.py -k exskims_out/example_skims_1.tsv -t /root/data/example_workflow/input/sampleID_taxid.txt > exskims_lca.tsv`
+
+The output is in the format:
+
+```
+| Read header | Read length (if provided) | Maximum proportion identity | Number of matches above proportion identity cutoff value (default = 0.7) | Taxid of LCA | Scientific name of LCA
+```

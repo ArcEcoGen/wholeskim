@@ -6,6 +6,7 @@
 intermediate
 logs
 scratch
+data/example_workflow/output
 
 # ignore OS generated files
 .DS_Store

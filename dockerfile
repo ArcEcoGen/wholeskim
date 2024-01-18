@@ -27,14 +27,17 @@ WORKDIR /opt/kmtricks
 RUN tar -zxvf kmtricks-v1.4.0-sources.tar.gz
 RUN mkdir build && cd build \
     && cmake .. -DKMER_LIST="32 64 96 128" -DWITH_MODULES=ON -DWITH_HOWDE=ON -DWITH_SOCKS=ON -DNATIVE=OFF \
-    && make -j8
+    && make -j8 \
+    && cp ../bin/kmtricks /usr/local/bin/kmtricks
 
 RUN cd /opt \
     && cd kmtricks/build \
     && cmake .. -DWITH_PLUGIN=ON \
-    && make -j8
+    && make -j8 \
+    && cp ../bin/kmtricks /usr/local/bin/kmtricksp
 
-#RUN rm -rf /opt/kmtricks
+# Clean
+RUN rm -rf /opt/kmtricks
 
 WORKDIR /root
 ENTRYPOINT /bin/bash
