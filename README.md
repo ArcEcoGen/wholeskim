@@ -84,6 +84,6 @@ Optionally check the accuracy of assignments to one specific taxon of interest (
 
 `vis_assignment.py --kmindex exskims_lca_summary.txt --taxon 190548 --cutoff 2`
 
-Subset all reads that match exactly to *V. uliginosum*
+Subset all reads that match exactly to *V. uliginosum*. `sed` portion of this command might be necessary to avoid matching more than one sequence. 
 
-`grep -P "\t190548\t" exskims_lca.tsv | cut -f 1 | grep -f - -A 3 --no-group-separator ../input/vaculi_merged.fastq > exskims_vaculi.fastq`
+`grep -P "\t190548\t" exskims_lca.tsv | cut -f 1 | sed -i 's/$/ /' | grep -f - -A 3 --no-group-separator ../input/vaculi_merged.fastq > exskims_vaculi.fastq`
