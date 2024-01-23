@@ -8,10 +8,10 @@ from ete3 import Tree
 # Argument parsing
 parser = argparse.ArgumentParser("Creates tree from kmindex output")
 parser.add_argument("-t", "--taxa", dest="taxa_file", type=str,  help="Taxa count file (tsv)", required=True)
+parser.add_argument("-c", "--cutoff", dest="cutoff", type=float, help="Value which matches are cutoff under.", required=True)
 parser.add_argument("-n", "--names", dest="names", type=str, help="NCBI names.dmp file. Default is /usr/share/names.dmp", required=False, default="/usr/share/names.dmp")
 parser.add_argument("-s", "--nodes", dest="nodes", type=str, help="NCBI nodes.dmp file. Default is /usr/share/nodes.dmp", required=False, default="/usr/share/nodes.dmp")
 parser.add_argument("-m", "--merged", dest="merged", type=str, help="NCBI merged.dmp file. Default is  /usr/share/merged.dmp", required=False, default="/usr/share/merged.dmp")
-parser.add_argument("-c", "--cutoff", dest="cutoff", type=float, help="Value which matches are cutoff under.", required=True)
 args = parser.parse_args()
 
 ''' 
@@ -154,4 +154,8 @@ for node in taxa_tree.traverse():
 
 print(taxa_tree.get_ascii(attributes=["count", "sci_name"], show_internal=True))
 
-print(taxa_tree.write(features=["count", "sci_name"], format=0))
+print(taxa_tree.write(features=["count", "sci_name"], format=1))
+
+for entry in present_taxa_count:
+    print(f"{entry}\t{present_taxa_count[entry]}\t{name_dict[entry]}")
+#taxa_tree.render("test.png")
