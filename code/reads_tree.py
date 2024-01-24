@@ -2,11 +2,18 @@
 
 import sys
 import argparse
-import pprint
 from ete3 import Tree
 
+'''
+The features (count and scientific name) added to the nodes and output in extended newick format aren't recognized by ggtree/treeio for plotting.
+Annoying, but making the extra lookup metadata table is the quickeset workaround I think.
+
+All leaves end up at different lengths since there are a variable number of clades between species and root. 
+Seems like a difficult problem to solve, leave for when I'm trying to procrastinate on writing.
+'''
+
 # Argument parsing
-parser = argparse.ArgumentParser("Creates tree from kmindex output")
+parser = argparse.ArgumentParser("Creates phylogenetic tree from kmindex output")
 parser.add_argument("-t", "--taxa", dest="taxa_file", type=str,  help="Taxa count file (tsv)", required=True)
 parser.add_argument("-c", "--cutoff", dest="cutoff", type=float, help="Value which matches are cutoff under.", required=True)
 parser.add_argument("-n", "--names", dest="names", type=str, help="NCBI names.dmp file. Default is /usr/share/names.dmp", required=False, default="/usr/share/names.dmp")
@@ -123,8 +130,6 @@ for i in range(len(pt_keys)):
 # Find lowest parent node and create parent_child_table
 parent_child_table = []
 for t in present_taxa_count:
-    # Check every taxid to root to see lowest one present in present_taxa_count to assign as parent
-
     root_node=True
 
     # Check if root node is present
@@ -146,16 +151,17 @@ for t in present_taxa_count:
 # Create tree
 taxa_tree = Tree.from_parent_child_table(parent_child_table)
 
-# Add read count values
-
+# Add read count and scientifc name features
 for node in taxa_tree.traverse():
     if node.name != "Root":
         node.add_features(count=present_taxa_count[node.name], sci_name=name_dict[node.name])
 
+# Display ascii tree
 print(taxa_tree.get_ascii(attributes=["count", "sci_name"], show_internal=True))
 
+# Print extended newick format tree string
 print(taxa_tree.write(features=["count", "sci_name"], format=1))
 
+# Print metadata lookup table
 for entry in present_taxa_count:
     print(f"{entry}\t{present_taxa_count[entry]}\t{name_dict[entry]}")
-#taxa_tree.render("test.png")
