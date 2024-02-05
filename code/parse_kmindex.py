@@ -168,7 +168,7 @@ for n in kmindex_dict.keys():
     if re.match(args.search_ID, n):
         reads_list.append(n)
 
-# {taxid : {"phylum" : "name", }}
+# {taxid : []}
 fulltax_dict = {}
 
 # Loops through results
@@ -217,7 +217,7 @@ for r in reads_list:
 
     # Output
     try:
-        print(f"{first_columns}\t{max_ID}\t{matches}\t{tid}\t{name_dict[tid]}", end="")
+        print(f"{first_columns}\t{max_ID}\t{matches}\t{tid}\t{name_dict[tid]}", end="\n")
     #Catches if a taxid isn't present in names.dmp or nodes.dmp
     except KeyError as e:
         #print("Taxid: {} not found in either names.dmp or nodes.dmp, looking in merged.dmp".format(ti), file=sys.stderr)
@@ -233,4 +233,4 @@ for r in reads_list:
         if not found:
             print("Taxid: {} not found in merged.dmp! Try downloading an updated taxdump".format(ti), file=sys.stderr)
             break
-        print(f"{first_columns}\t{max_ID}\t{matches}\t{tid}\tunk_{tid}", end="")
+        print(f"{first_columns}\t{max_ID}\t{matches}\t{tid}\tunk_{tid}", end="\n")
