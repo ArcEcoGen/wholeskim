@@ -16,3 +16,4 @@ Thumbs.db
 # Whitelisted files
 # -------------------------
 !.gitignore
+.Rproj.user
