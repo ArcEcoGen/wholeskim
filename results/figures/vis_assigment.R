@@ -67,12 +67,32 @@ figure <- ggarrange(p_betnan, p_avefle,
 annotate_figure(figure, left = textGrob("Proportion of reads", rot = 90, vjust = 0.5, gp = gpar(cex = 2.4)),
                 bottom = textGrob("Workflow", vjust = 0.3, hjust=1.3, gp = gpar(cex = 2.4)))
 
+######################## ONE OUT FINAL ################################
+skim_order <- c("vaculino_vacc_no_erica",
+                "vaculino_vacc_all_erica",
+                "vaculi0",
+                "vaculi1",
+                "vaculi2",
+                "vaculi3",
+                "vaculi4",
+                "vaculi5",
+                "vaculi6",
+                "vaculi7",
+                "vaculi8",
+                "vaculi9",
+                "vaculi10",
+                "vaculi11",
+                "vaculi12",
+                "vaculi13",
+                "vaculi14",
+                "vaculi15")
 
-######################## ONE OUT ################################
-oneout_skims <-  read.csv("~/Documents/paper_2/kmindex_output/skim_test/vacc_oneadd/overall_updhigher.tsv", header=FALSE, sep = "\t", na.strings = "NOT")
+oneout_skims <-  read.csv("~/Documents/paper_2/wholeskim/results/figures/erica_dropout/overall.txt", header=FALSE, sep = "\t", na.strings = "NOT")
 oneout_skims <- group_by(oneout_skims, V1) %>% 
-  mutate(percent = V5/sum(V5)) %>%
-  mutate(grouped = ifelse(str_detect(V2, "higher|\\btarget"), paste("corr_", "", sep=""), paste("incorr_", "", sep="")))
+  mutate(percent = V3/sum(V3)) %>%
+  mutate(grouped = ifelse(str_detect(V2, "higher|\\btarget"), paste("corr_", "", sep=""), paste("incorr_", "", sep=""))) %>%
+  arrange(match(V1, skim_order))
+  
 
 oneout_skims <- oneout_skims[!(oneout_skims$V2=="unid"),]
 
@@ -85,27 +105,28 @@ oneout_skims$V2 <- factor(oneout_skims$V2, levels = c("higher_taxa",
                                                       "off_genus",
                                                       "off_target"))
 
-oneout_skims$V1 <- factor(oneout_skims$V1, levels = c("noerica",
-                                                      "allerica_novacc",
-                                                      "allerica_0ulig",
-                                                      "allerica_1small",
-                                                      "allerica_1large",
-                                                      "allerica_2ulig",
-                                                      "allerica_3ulig",
-                                                      "allerica_4ulig",
-                                                      "allerica_5ulig",
-                                                      "vaculi"))
+
+oneout_skims$V1 <- factor(oneout_skims$V1, levels = skim_order)
 
 facet_labs_oneout <- c("No Ericaceae", 
                        "Ericaceae, \nno Vaccinium", 
                        "Ericaceae,\nVaccinium,\nno uliginosum", 
-                       "1 small\nV. uliginosum",
-                       "1 large\nV. uliginosum",
+                       "1 median\nV. uliginosum",
                        "2 median\nV. uliginosum",
                        "3 median\nV. uliginosum",
                        "4 median\nV. uliginosum",
                        "5 median\nV. uliginosum",
-                       "16 skims\nV. uliginosum")
+                       "6 median\nV. uliginosum",
+                       "7 median\nV. uliginosum",
+                       "8 median\nV. uliginosum",
+                       "9 median\nV. uliginosum",
+                       "10 median\nV. uliginosum",
+                       "11 median\nV. uliginosum",
+                       "12 median\nV. uliginosum",
+                       "13 median\nV. uliginosum",
+                       "14 median\nV. uliginosum",
+                       "15 complete\nV. uliginosum")
+#  median\nV. uliginosum
 names(facet_labs_oneout) <- levels(factor(oneout_skims$V1))
 
 p_plot <- ggplot(oneout_skims, aes(fill = V2, y=percent, x=grouped)) + 
@@ -120,6 +141,7 @@ p_plot <- ggplot(oneout_skims, aes(fill = V2, y=percent, x=grouped)) +
         axis.ticks.x = element_blank(),
         axis.title.y = element_blank(),
         axis.line = element_line(colour = "black"),
+        strip.text.x = element_text(angle=270),
         panel.border = element_blank(),
         strip.background = element_rect(fill = NA, color = "white"),
         text=element_text(size=17)) +
@@ -134,4 +156,7 @@ vaccfig <- ggarrange(p_plot,
 
 annotate_figure(vaccfig, left = textGrob("Proportion of reads", rot = 90, vjust = 0.5, gp = gpar(cex = 2.4)),
                 bottom = textGrob("Database composition", vjust = 0.3, hjust=0.7, gp = gpar(cex = 2.4)))
+
+####### Genome completeness
+
 
