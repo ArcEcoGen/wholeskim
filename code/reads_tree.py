@@ -160,8 +160,10 @@ for node in taxa_tree.traverse():
 print(taxa_tree.get_ascii(attributes=["count", "sci_name"], show_internal=True))
 
 # Print extended newick format tree string
-print(taxa_tree.write(features=["count", "sci_name"], format=1))
+with open(args.taxa_file.replace("_count.tsv", ".nwk"), "w") as tree_f:
+    tree_f.write(taxa_tree.write(features=["count", "sci_name"], format=1))
 
 # Print metadata lookup table
-for entry in present_taxa_count:
-    print(f"{entry}\t{present_taxa_count[entry]}\t{name_dict[entry]}")
+with open(args.taxa_file.replace("_count.tsv", "_metadata.tsv"), "w") as meta_f:
+    for entry in present_taxa_count:
+        meta_f.write(f"{entry}\t{present_taxa_count[entry]}\t{name_dict[entry]}\n")
