@@ -1,0 +1,51 @@
+index_location,skim_number,skim_name,skim_taxa,skim_taxid,skim_sampleID,skim_reads,skim_kmer_estimate
+raw_cat_7.tsv,27,BMB_DB-gbfin,Andromeda polifolia,95630,BMB_DB,7970454,308089690
+raw_cat_7.tsv,102,BXA_CLN-gbfin,Andromeda polifolia var. glaucophylla,191523,BXA_CLN,7255010,299157276
+raw_cat_7.tsv,76,BXA_BKN-gbfin,Arctostaphylos uva-ursi,84009,BXA_BKN,8659113,302398293
+raw_cat_6.tsv,245,BMB_BV-gbfin,Calluna vulgaris,13385,BMB_BV,9927076,321145225
+raw_cat_7.tsv,50,BXA_AGR-gbfin,Cassiope tetragona,423282,BXA_AGR,8938985,305424084
+raw_cat_6.tsv,49,CDM_AOD-gbfin,Chamaedaphne calyculata,13417,CDM_AOD,10700952,349786294
+raw_cat_5.tsv,53,CDM_AGC-gbfin,Chimaphila umbellata,93815,CDM_AGC,10038071,424386858
+raw_cat_5.tsv,51,CDM_BDY-gbfin,Chimaphila umbellata,93815,CDM_BDY,9663031,424610229
+raw_cat_5.tsv,112,BXA_CKW-gbfin,Empetrum nigrum,191066,BXA_CKW,15785619,399563145
+raw_cat_6.tsv,60,BMB_E-gbfin,Empetrum nigrum subsp. hermaphroditum,199171,BMB_E,11858262,348818332
+raw_cat_9.tsv,61,BXA_CHL-gbfin,Erica cinerea,270432,BXA_CHL,8116764,243804613
+raw_cat_7.tsv,259,BXA_BAD-gbfin,Harrimanella hypnoides,49146,BXA_BAD,9167014,284862730
+raw_cat_7.tsv,13,BXA_CKA-gbfin,Harrimanella stelleriana,764531,BXA_CKA,9297991,309853088
+raw_cat_5.tsv,248,CDM_AJF-gbfin,Kalmia polifolia,45899,CDM_AJF,10328710,360363101
+raw_cat_5.tsv,171,BMB_KL-gbfin,Kalmia procumbens,45912,BMB_KL,10834118,378905108
+raw_cat_5.tsv,174,BXA_CCA-gbfin,Moneses uniflora,93817,BXA_CCA,7814005,378490370
+raw_cat_6.tsv,160,CDM_AHX-gbfin,Monotropa hypopitys,176248,CDM_AHX,9627568,334208732
+raw_cat_5.tsv,85,BXA_AHD-gbfin,Orthilia secunda,93819,BXA_AHD,9960946,410763790
+raw_cat_7.tsv,283,BMB_V-gbfin,Phyllodoce caerulea,49155,BMB_V,8282868,282562658
+raw_cat_5.tsv,30,BXA_CKT-gbfin,Pyrola asarifolia,93823,BXA_CKT,10922626,434334731
+raw_cat_7.tsv,20,CDM_BCE-gbfin,Pyrola chlorantha,93824,CDM_BCE,7541044,309251106
+raw_cat_4.tsv,35,BXA_CJD-gbfin,Pyrola grandiflora subsp. norvegica,1891522,BXA_CJD,12993384,491109383
+raw_cat_6.tsv,210,BMB_I-gbfin,Pyrola minor,93826,BMB_I,7696771,325538237
+raw_cat_9.tsv,159,CDM_BCD-gbfin,Pyrola rotundifolia,13651,CDM_BCD,5314964,234305542
+raw_cat_7.tsv,239,BXA_BCA-gbfin,Rhododendron lapponicum,313330,BXA_BCA,9616575,287334138
+raw_cat_6.tsv,92,BXA_BCB-gbfin,Rhododendron tomentosum,49170,BXA_BCB,9444957,343730114
+raw_cat_5.tsv,67,BMB_GK-gbfin,Vaccinium microcarpus,669730,BMB_GK,14871180,419516896
+raw_cat_6.tsv,52,BXA_BNQ-gbfin,Vaccinium myrtillus,180763,BXA_BNQ,12243946,349632409
+raw_cat_5.tsv,213,BMB_EV-gbfin,Vaccinium myrtillus,180763,BMB_EV,12377014,368301779
+raw_cat_6.tsv,243,CDM_AYP-gbfin,Vaccinium oxycoccus,516948,CDM_AYP,7996646,321403189
+raw_cat_4.tsv,11,BMB_HN-gbfin,Vaccinium oxycoccus,516948,BMB_HN,16549022,531274146
+raw_cat_9.tsv,200,BXA_BNT-gbfin,Vaccinium vitis-idaea,180772,BXA_BNT,5790638,229693601
+raw_cat_6.tsv,83,BMB_HT-gbfin,Vaccinium vitis-idaea,180772,BMB_HT,9016196,345077430
+raw_cat_5.tsv,87,BXA_BNV-gbfin,Vaccinium vitis-idaea var minus,1149950,BXA_BNV,13463304,410534503
+raw_cat_7.tsv,189,CDM_AZD-gbfin,Vaccinium uliginosum,190548,CDM_AZD,7964382,291489961
+raw_cat_11.tsv,1,CDM_APX-gbfin,Vaccinium uliginosum,190548,CDM_APX,3871700,159227639
+raw_cat_10.tsv,46,BXA_BNS-gbfin,Vaccinium uliginosum,190548,BXA_BNS,6961199,213128782
+raw_cat_9.tsv,263,CDM_AZB-gbfin,Vaccinium uliginosum,190548,CDM_AZB,5735300,223274298
+raw_cat_8.tsv,228,CDM_AZA-gbfin,Vaccinium uliginosum,190548,CDM_AZA,8015722,258425473
+raw_cat_8.tsv,217,CDM_APU-gbfin,Vaccinium uliginosum,190548,CDM_APU,6633556,259768844
+raw_cat_7.tsv,304,CDM_AZE-gbfin,Vaccinium uliginosum,190548,CDM_AZE,7533382,280502615
+raw_cat_7.tsv,235,CDM_AZF-gbfin,Vaccinium uliginosum,190548,CDM_AZF,7833678,287587624
+raw_cat_7.tsv,122,CDM_APV-gbfin,Vaccinium uliginosum,190548,CDM_APV,8464032,297702723
+raw_cat_7.tsv,74,CDM_AUO-gbfin,Vaccinium uliginosum,190548,CDM_AUO,8245102,302522313
+raw_cat_6.tsv,314,CDM_APA-gbfin,Vaccinium uliginosum,190548,CDM_APA,9221278,313073833
+raw_cat_6.tsv,212,CDM_AZG-gbfin,Vaccinium uliginosum,190548,CDM_AZG,9062318,325264362
+raw_cat_6.tsv,157,CDM_AZC-gbfin,Vaccinium uliginosum,190548,CDM_AZC,8601648,334553490
+raw_cat_5.tsv,203,BXA_BNR-gbfin,Vaccinium uliginosum,190548,BXA_BNR,11804958,370659136
+raw_cat_5.tsv,106,CDM_APW-gbfin,Vaccinium uliginosum,190548,CDM_APW,13162068,402549034
+raw_cat_6.tsv,141,BMB_FA-gbfin,Vaccinium uliginosum subsp. uliginosum,1734434,BMB_FA,8891550,337069325
