@@ -14,7 +14,7 @@ library(ggpubr)
 library(grid)
 ```
 
-# Figures 
+# Figures
 
 ## Confusion matrix
 
@@ -141,6 +141,35 @@ ggsave("results/figures/confusion_matrix.tiff",confusion_matrix_plot,dpi=300)
 ggsave("results/figures/confusion_matrix.png",confusion_matrix_plot,dpi=300)
 
 confusion_matrix_plot
+```
+
+## Information content
+
+```{r}
+data <- read_csv("results/data/contigs_kmercount.csv") %>%
+          full_join(read_csv("results/data/skims_kmercount.csv"),
+                    by = "taxid")
+```
+
+```{r}
+data %>%
+  ggplot(aes(x=skim/contig)) +
+  geom_density(bins=50) +
+  scale_x_log10()
+```
+
+```{r}
+MASS::rlm(skim ~ contig, data = data) %>% summary()
+```
+
+```{r}
+data %>%
+  ggplot(aes(y=skim,x = contig)) +
+  geom_point() +
+  stat_smooth(method = MASS::rlm) +
+  geom_abline(slope = 1,col="red") +
+  scale_x_log10() +
+  scale_y_log10()
 ```
 
 ## Sequencing effort
@@ -312,3 +341,17 @@ data %>%
   facet_wrap(.~ ident_class, scales = "free_y")
 
 ```
+
+```{r}
+expected_kmers <- function(nreads, gsize, k, read_size = 100, eseq = 3.5e-3) {
+  nkmer <- (read_size - k + 1) * nreads
+  depth <- nkmer / (gsize - k + 1)
+  (gsize - k + 1) * (1 - exp(-depth)) + (eseq * k * nkmer)
+}
+
+plot(function(x) expected_kmers(x,620e6,33), xlim=c(1,150e6))
+plot(function(x) expected_kmers(x,620e6,33,eseq = 0), xlim=c(1,150e6),col="red", add=TRUE)
+
+```
+
+![](http://127.0.0.1:47755/chunk_output/37087A8226dca95b/80E4C04F/ck4xec3z5vp9s/00003c.png?resize=23)
