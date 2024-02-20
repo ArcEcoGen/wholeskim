@@ -342,6 +342,13 @@ data %>%
 
 ```
 
+| Species           | Section   | Location | 2n  | PL  | GS (2C pg)± SD  | 1Cx  | standard        |
+|-------------------|-----------|----------|-----|-----|-----------------|------|-----------------|
+| V. uliginosum (1) | Vaccinium | Andorra  | 24  | 2x  | 1.47 ± 0.11     | 0.74 | Petunia hybrida |
+| V. uliginosum (2) | Vaccinium | Turkey   | 24  | 2x  | 1.34 ± 0.02     | 0.67 | Petunia hybrida |
+
+Sultana, N.; Pascual-Díaz, J.P.; Gers, A.; Ilga, K.; Serçe, S.; Vitales, D.; Garcia, S. Contribution to the Knowledge of Genome Size Evolution in Edible Blueberries (genus Vaccinium). *J. Berry Res.* **2020**, *10*, 243–257.
+
 ```{r}
 expected_kmers <- function(nreads, gsize, k, read_size = 100, eseq = 3.5e-3) {
   nkmer <- (read_size - k + 1) * nreads
