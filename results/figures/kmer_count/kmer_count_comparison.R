@@ -9,6 +9,17 @@ colnames(kmer_compare_contigs) <- c("taxid", "contig_kmer")
 
 kmer_full_compare <- full_join(kmer_compare_1541, kmer_compare_contigs, by = "taxid")
 
+kmer_full_compare <- kmer_full_compare %>% mutate(ratio = wholeskim_kmer/contig_kmer)
+                            
+ggplot(kmer_full_compare, aes(x=ratio)) + 
+  geom_density(linewidth=3) +
+  scale_x_continuous(trans="log", breaks = c(1,10,100), name = "Genome skim k-mer count / Contig k-mer count") +
+  ylab("Density") +
+  theme_bw() +
+  theme(axis.line = element_line(colour = "black"),
+        panel.border = element_blank(),
+        text=element_text(size=17))
+
 p <- ggplot(kmer_full_compare, aes(contig_kmer, wholeskim_kmer, label=taxid)) + geom_point() + 
   scale_x_continuous(trans="log") +
   scale_y_continuous(trans="log") +
