@@ -20,7 +20,6 @@ parser.add_argument("-c", "--cutoff", dest="cutoff", type=int, help="Minimum num
 parser.add_argument("-n", "--names", dest="names", type=str, help="NCBI names.dmp file. Default is /usr/share/names.dmp", required=False, default="/usr/share/names.dmp")
 parser.add_argument("-s", "--nodes", dest="nodes", type=str, help="NCBI nodes.dmp file. Default is /usr/share/nodes.dmp", required=False, default="/usr/share/nodes.dmp")
 parser.add_argument("-m", "--merged", dest="merged", type=str, help="NCBI merged.dmp file. Default is /usr/share/merged.dmp", required=False, default="/usr/share/merged.dmp")
-parser.add_argument("-x", "--suffix", dest="suffix", type=str, help="Suffix to output to taxa name", required=False, default="")
 args = parser.parse_args()
 
 # Utilities
