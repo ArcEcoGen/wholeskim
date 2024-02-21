@@ -1,8 +1,0 @@
-vaculino_vacc_all_erica	unid	152993
-vaculino_vacc_all_erica	off_target	11690
-vaculino_vacc_all_erica	off_genus	0
-vaculino_vacc_all_erica	off_family	1962
-vaculino_vacc_all_erica	target	0
-vaculino_vacc_all_erica	higher_taxa	14706
-vaculino_vacc_all_erica	higher_genus	0
-vaculino_vacc_all_erica	higher_family	372

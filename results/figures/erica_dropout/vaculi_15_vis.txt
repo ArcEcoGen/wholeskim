@@ -1,8 +1,0 @@
-vaculi1	unid	124378
-vaculi1	off_target	2456
-vaculi1	off_genus	5043
-vaculi1	off_family	275
-vaculi1	target	14639
-vaculi1	higher_taxa	24919
-vaculi1	higher_genus	9411
-vaculi1	higher_family	602

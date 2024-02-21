@@ -1,8 +1,0 @@
-vaculi15	unid	100198
-vaculi15	off_target	332
-vaculi15	off_genus	1053
-vaculi15	off_family	90
-vaculi15	target	40377
-vaculi15	higher_taxa	26685
-vaculi15	higher_genus	12355
-vaculi15	higher_family	633
