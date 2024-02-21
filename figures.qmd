@@ -342,18 +342,20 @@ data %>%
 
 ```
 
-| Species           | Section   | Location | 2n  | PL  | GS (2C pg)± SD  | 1Cx  | standard        |
-|-------------------|-----------|----------|-----|-----|-----------------|------|-----------------|
-| V. uliginosum (1) | Vaccinium | Andorra  | 24  | 2x  | 1.47 ± 0.11     | 0.74 | Petunia hybrida |
-| V. uliginosum (2) | Vaccinium | Turkey   | 24  | 2x  | 1.34 ± 0.02     | 0.67 | Petunia hybrida |
+| Species           | Section   | Location | 2n  | PL  | GS (2C pg)± SD | 1Cx  | standard        |
+|---------|---------|---------|---------|---------|---------|---------|---------|
+| V. uliginosum (1) | Vaccinium | Andorra  | 24  | 2x  | 1.47 ± 0.11    | 0.74 | Petunia hybrida |
+| V. uliginosum (2) | Vaccinium | Turkey   | 24  | 2x  | 1.34 ± 0.02    | 0.67 | Petunia hybrida |
 
 Sultana, N.; Pascual-Díaz, J.P.; Gers, A.; Ilga, K.; Serçe, S.; Vitales, D.; Garcia, S. Contribution to the Knowledge of Genome Size Evolution in Edible Blueberries (genus Vaccinium). *J. Berry Res.* **2020**, *10*, 243–257.
 
 ```{r}
-expected_kmers <- function(nreads, gsize, k, read_size = 100, eseq = 3.5e-3) {
-  nkmer <- (read_size - k + 1) * nreads
-  depth <- nkmer / (gsize - k + 1)
-  (gsize - k + 1) * (1 - exp(-depth)) + (eseq * k * nkmer)
+expected_kmers <- function(nreads, gsize, k, read_size = 101, eseq = 3.5e-3) {
+  nkmer <- (read_size - k + 1) * nreads 
+  badkmer <- read_size * nreads * eseq * k
+  goodkmer <- nkmer - badkmer
+  depth <- goodkmer / (gsize - k + 1)
+  (gsize - k + 1) * (1 - exp(-depth)) + badkmer
 }
 
 plot(function(x) expected_kmers(x,620e6,33), xlim=c(1,150e6))
@@ -361,4 +363,90 @@ plot(function(x) expected_kmers(x,620e6,33,eseq = 0), xlim=c(1,150e6),col="red",
 
 ```
 
-![](http://127.0.0.1:47755/chunk_output/37087A8226dca95b/80E4C04F/ck4xec3z5vp9s/00003c.png?resize=23)
+```{r}
+data_kmer <- read_csv(file = "results/data/vacc_reads_subset_kmercount.csv",
+                 show_col_types = FALSE)
+```
+
+```{r}
+data_kmer %>% filter(read_count > 5e7) %>%
+  lm(kmer_count ~ read_count, data=.) %>%
+  summary()
+```
+
+```{r}
+fit <- nls(kmer_count ~ expected_kmers(read_count,genome_size,33,eseq =eseq),
+    data = data_kmer,
+    start = c(genome_size=600e6,eseq=4.4e-3))
+
+summary(fit)
+```
+
+```{r}
+data_kmer %>%
+  ggplot(aes(x=read_count,y=kmer_count)) +
+  geom_point() +
+  geom_function(fun = function(x) expected_kmers(x,coef(fit)['genome_size'],
+                                                 33,eseq = 4.4e-3), 
+                colour = "red")+
+  geom_function(fun = function(x) expected_kmers(x,coef(fit)['genome_size'],33,eseq = 0), 
+                colour = "blue") +
+  geom_vline(xintercept = coef(fit)['genome_size']/101, lty=2)
+```
+
+```{r}
+coverage_estimate <- function(nreads, gsize, k, read_size = 101,
+                              eseq = coef(fit)['eseq']) {
+  nkmer <- (read_size - k + 1) * nreads 
+  badkmer <- read_size * nreads * eseq * k
+  goodkmer <- nkmer - badkmer
+  depth <- goodkmer / (gsize - k + 1)
+  1-exp(-depth)
+}
+
+
+ggplot() +
+  xlim(1e6, 6e7) +
+  geom_function(fun = function(x) coverage_estimate(x,coef(fit)['genome_size'],33,
+                                                    eseq = coef(fit)['eseq']), 
+                colour = "blue") +
+  geom_vline(xintercept = 6e6, lty=2) +
+  ylab("Covered part of the genome") +
+  xlab("Vaccinium uliginosum sequence read count")
+```
+
+```{r}
+coverage_estimate(6e6,coef(fit)['genome_size'],33,eseq = 4.4e-3)
+```
+
+```{r}
+assign_levels <- c("target","higher_genus","higher_family","higher_taxa",
+                   "unid",
+                   "off_target","off_genus","off_family")
+data <- read_csv("results/data/vaccinium_dropout.csv", show_col_types = FALSE) %>%
+  mutate(category = factor(category,levels=assign_levels)) %>%
+  separate(sample,into = c("xxx","library_read_count"),remove = FALSE,sep = "_") %>%
+  select(-xxx) %>%
+  mutate(library_read_count = as.numeric(library_read_count) * 1e6,
+         coverage = coverage_estimate(library_read_count,coef(fit)['genome_size'],33,
+                                                    eseq = coef(fit)['eseq']))
+  
+```
+
+```{r}
+data %>%
+  left_join(data_kmer,by=c(library_read_count="read_count")) %>%
+  group_by(sample) %>%
+  mutate(freq = read_count / sum(read_count)) %>%
+  ungroup() %>%
+  #filter(category %in% c("target","off_family")) %>%
+  ggplot(aes(x=kmer_count,y=freq, col = category)) +
+  stat_smooth(aes(group = interaction(kmer_count < 6e8,category)),method = lm) +
+  geom_point() +
+  ylab("Frequence of targer") +
+  facet_wrap(. ~ category, scale = "free_y")
+```
+
+```{r}
+
+```
