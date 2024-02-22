@@ -448,5 +448,451 @@ data %>%
 ```
 
 ```{r}
+read_csv("results/figures/read_comparison/1541_9sp_wholeskim/header_highertaxa.txt",
+  col_names = "read_id",
+  show_col_types = FALSE
+) %>%
+  separate(read_id,
+    into = c("species"),
+    extra = "drop", remove = FALSE,
+    sep = "_r?[0-9]+_"
+  ) %>%
+  mutate(
+    species = str_replace(species, "^[A-Z]+_", ""),
+    wholeskim = "higher_taxa"
+  ) %>%
+  bind_rows(
+    read_csv("results/figures/read_comparison/1541_9sp_wholeskim/header_miss.txt",
+      col_names = "read_id",
+      show_col_types = FALSE
+    ) %>%
+      separate(read_id,
+        into = c("species"),
+        extra = "drop", remove = FALSE,
+        sep = "_r?[0-9]+_"
+      ) %>%
+      mutate(
+        species = str_replace(species, "^[A-Z]+_", ""),
+        wholeskim = "misassign"
+      )
+  ) %>%
+  bind_rows(
+    read_csv("results/figures/read_comparison/1541_9sp_wholeskim/header_offfamily.txt",
+      col_names = "read_id",
+      show_col_types = FALSE
+    ) %>%
+      separate(read_id,
+        into = c("species"),
+        extra = "drop", remove = FALSE,
+        sep = "_r?[0-9]+_"
+      ) %>%
+      mutate(
+        species = str_replace(species, "^[A-Z]+_", ""),
+        wholeskim = "off_family"
+      )
+  ) %>%
+  bind_rows(
+    read_csv("results/figures/read_comparison/1541_9sp_wholeskim/header_offgenus.txt",
+      col_names = "read_id",
+      show_col_types = FALSE
+    ) %>%
+      separate(read_id,
+        into = c("species"),
+        extra = "drop", remove = FALSE,
+        sep = "_r?[0-9]+_"
+      ) %>%
+      mutate(
+        species = str_replace(species, "^[A-Z]+_", ""),
+        wholeskim = "off_genus"
+      )
+  ) %>%
+  bind_rows(
+    read_csv("results/figures/read_comparison/1541_9sp_wholeskim/header_tarfamily.txt",
+      col_names = "read_id",
+      show_col_types = FALSE
+    ) %>%
+      separate(read_id,
+        into = c("species"),
+        extra = "drop", remove = FALSE,
+        sep = "_r?[0-9]+_"
+      ) %>%
+      mutate(
+        species = str_replace(species, "^[A-Z]+_", ""),
+        wholeskim = "higher_family"
+      )
+  )  %>%
+  bind_rows(
+    read_csv("results/figures/read_comparison/1541_9sp_wholeskim/header_targenus.txt",
+      col_names = "read_id",
+      show_col_types = FALSE
+    ) %>%
+      separate(read_id,
+        into = c("species"),
+        extra = "drop", remove = FALSE,
+        sep = "_r?[0-9]+_"
+      ) %>%
+      mutate(
+        species = str_replace(species, "^[A-Z]+_", ""),
+        wholeskim = "higher_genus"
+      )
+  ) %>%
+  bind_rows(
+    read_csv("results/figures/read_comparison/1541_9sp_wholeskim/header_target.txt",
+      col_names = "read_id",
+      show_col_types = FALSE
+    ) %>%
+      separate(read_id,
+        into = c("species"),
+        extra = "drop", remove = FALSE,
+        sep = "_r?[0-9]+_"
+      ) %>%
+      mutate(
+        species = str_replace(species, "^[A-Z]+_", ""),
+        wholeskim = "target"
+      )
+  ) %>%
+  bind_rows(
+    read_csv("results/figures/read_comparison/1541_9sp_wholeskim/header_unid.txt",
+      col_names = "read_id",
+      show_col_types = FALSE
+    ) %>%
+      separate(read_id,
+        into = c("species"),
+        extra = "drop", remove = FALSE,
+        sep = "_r?[0-9]+_"
+      ) %>%
+      mutate(
+        species = str_replace(species, "^[A-Z]+_", ""),
+        wholeskim = "unid"
+      )
+  ) -> matching
 
+```
+
+```{r}
+read_csv("results/figures/read_comparison/holi/header_highertaxa.txt",
+  col_names = "read_id",
+  show_col_types = FALSE
+) %>%
+  separate(read_id,
+    into = c("species"),
+    extra = "drop", remove = FALSE,
+    sep = "_r?[0-9]+_"
+  ) %>%
+  mutate(
+    species = str_replace(species, "^[A-Z]+_", ""),
+    holi = "higher_taxa"
+  ) %>%
+  bind_rows(
+    read_csv("results/figures/read_comparison/holi/header_miss.txt",
+      col_names = "read_id",
+      show_col_types = FALSE
+    ) %>%
+      separate(read_id,
+        into = c("species"),
+        extra = "drop", remove = FALSE,
+        sep = "_r?[0-9]+_"
+      ) %>%
+      mutate(
+        species = str_replace(species, "^[A-Z]+_", ""),
+        holi = "misassign"
+      )
+  ) %>%
+  bind_rows(
+    read_csv("results/figures/read_comparison/holi/header_offfamily.txt",
+      col_names = "read_id",
+      show_col_types = FALSE
+    ) %>%
+      separate(read_id,
+        into = c("species"),
+        extra = "drop", remove = FALSE,
+        sep = "_r?[0-9]+_"
+      ) %>%
+      mutate(
+        species = str_replace(species, "^[A-Z]+_", ""),
+        holi = "off_family"
+      )
+  ) %>%
+  bind_rows(
+    read_csv("results/figures/read_comparison/holi/header_offgenus.txt",
+      col_names = "read_id",
+      show_col_types = FALSE
+    ) %>%
+      separate(read_id,
+        into = c("species"),
+        extra = "drop", remove = FALSE,
+        sep = "_r?[0-9]+_"
+      ) %>%
+      mutate(
+        species = str_replace(species, "^[A-Z]+_", ""),
+        holi = "off_genus"
+      )
+  ) %>%
+  bind_rows(
+    read_csv("results/figures/read_comparison/holi/header_tarfamily.txt",
+      col_names = "read_id",
+      show_col_types = FALSE
+    ) %>%
+      separate(read_id,
+        into = c("species"),
+        extra = "drop", remove = FALSE,
+        sep = "_r?[0-9]+_"
+      ) %>%
+      mutate(
+        species = str_replace(species, "^[A-Z]+_", ""),
+        holi = "higher_family"
+      )
+  )  %>%
+  bind_rows(
+    read_csv("results/figures/read_comparison/holi/header_targenus.txt",
+      col_names = "read_id",
+      show_col_types = FALSE
+    ) %>%
+      separate(read_id,
+        into = c("species"),
+        extra = "drop", remove = FALSE,
+        sep = "_r?[0-9]+_"
+      ) %>%
+      mutate(
+        species = str_replace(species, "^[A-Z]+_", ""),
+        holi = "higher_genus"
+      )
+  ) %>%
+  bind_rows(
+    read_csv("results/figures/read_comparison/holi/header_target.txt",
+      col_names = "read_id",
+      show_col_types = FALSE
+    ) %>%
+      separate(read_id,
+        into = c("species"),
+        extra = "drop", remove = FALSE,
+        sep = "_r?[0-9]+_"
+      ) %>%
+      mutate(
+        species = str_replace(species, "^[A-Z]+_", ""),
+        holi = "target"
+      )
+  ) %>%
+  bind_rows(
+    read_csv("results/figures/read_comparison/holi/header_unid.txt",
+      col_names = "read_id",
+      show_col_types = FALSE
+    ) %>%
+      separate(read_id,
+        into = c("species"),
+        extra = "drop", remove = FALSE,
+        sep = "_r?[0-9]+_"
+      ) %>%
+      mutate(
+        species = str_replace(species, "^[A-Z]+_", ""),
+        holi = "unid"
+      )
+  ) -> matching_holi
+
+```
+
+```{r}
+matching %>%
+  full_join(matching_holi, by="read_id") %>%
+  mutate(species = ifelse(!is.na(species.x),species.x,species.y)) %>%
+  select(-species.x,-species.y) %>%
+  left_join(read_csv("results/data/simulated_read_length.csv",show_col_types = FALSE),
+            by=c(read_id="id")) %>%
+  mutate(holi = ifelse(is.na(holi),"unid",holi)) -> matching
+
+rm(matching_holi)
+```
+
+```{r}
+matching %>%
+  pivot_longer(c(wholeskim,holi),names_to = "pipeline",values_to = "result") %>%
+  ggplot(aes(y=seq_length,x=result)) +
+  geom_boxplot() +
+  facet_grid(. ~ pipeline) +
+  scale_y_log10() +
+  theme(
+    axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)
+  )
+  
+```
+
+```{r}
+matching %>%
+  pivot_longer(c(wholeskim,holi),names_to = "pipeline",values_to = "result") %>%
+  lm(seq_length ~ result, data = .) %>%
+  anova()
+```
+
+```{r}
+matching %>%
+  ggplot(aes(x=factor(seq_length))) +
+  geom_bar() +
+  theme(
+    axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)
+  )
+```
+
+```{r}
+assign_levels <- c("Total",'Target species',"Target genus","Target family",
+                   "Higher taxon",
+                   "Wrong species/Target genus","Wrong genus/Target family",
+                   "Wrong family","Unidentified")
+
+assign_color <- ifelse(assign_levels %in% c('Target species',
+                                                       "Target genus",
+                                                       "Target family", 
+                                                       "Higher taxon"), 
+                   "green", 
+                   ifelse(assign_levels %in% c("Wrong species/Target genus",
+                                               "Wrong genus/Target family"),
+                          "orange",
+                           ifelse(assign_levels == "Unidentified",
+                                  "black",
+                                  ifelse(assign_levels=="Total",
+                                         "blue","red"))))
+
+congruence_level <- c("Total","Unidentified","Both good",
+                      "Both partially wrong","Both wrong","Different")
+
+
+matching %>% 
+  group_by(holi,wholeskim) %>%
+  summarise(count = n(),.groups = "drop") %>%
+  pivot_wider(names_from = wholeskim,values_from = count,values_fill = 0) %>%
+  mutate(total = higher_family + higher_genus + 
+                 higher_taxa + misassign + off_family + 
+                 off_genus + target + unid) %>%
+  pivot_longer(-holi,names_to = "wholeskim", values_to = "count") %>%
+  pivot_wider(names_from = holi,values_from = count,values_fill = 0)  %>%
+  mutate(total = higher_family + higher_genus + 
+                 higher_taxa + misassign + off_family + 
+                 off_genus + target + unid) %>% 
+  pivot_longer(-wholeskim,names_to = "holi", values_to = "count") %>%
+  mutate(Percent = count / max(count) * 100,
+         wholeskim=factor(wholeskim),
+         holi = factor(holi,levels = levels(wholeskim)),
+         wholeskim = fct_recode(wholeskim,
+                                `Total` = "total",
+                                `Target species` = "target",
+                                `Target genus` = "higher_genus",
+                                `Target family` = "higher_family",
+                                `Higher taxon` = "higher_taxa",
+                                `Unidentified` = "unid",
+                                `Wrong species/Target genus` = "off_genus",
+                                `Wrong genus/Target family` = "off_family",
+                                `Wrong family` = "misassign"
+                                ),
+         holi = fct_recode(holi,
+                                `Total` = "total",
+                                `Target species` = "target",
+                                `Target genus` = "higher_genus",
+                                `Target family` = "higher_family",
+                                `Higher taxon` = "higher_taxa",
+                                `Unidentified` = "unid",
+                                `Wrong species/Target genus` = "off_genus",
+                                `Wrong genus/Target family` = "off_family",
+                                `Wrong family` = "misassign"
+                                ),
+         wholeskim = fct_relevel(wholeskim,
+                                 "Total",
+                                 'Target species',"Target genus",
+                                 "Target family", "Higher taxon",
+                                 "Wrong species/Target genus",
+                                 "Wrong genus/Target family", 
+                                 "Wrong family",
+                                 "Unidentified" 
+                                 ),
+         holi = fct_relevel(holi,
+                                 "Total",
+                                 'Target species',"Target genus",
+                                 "Target family", "Higher taxon",
+                                 "Wrong species/Target genus",
+                                 "Wrong genus/Target family", 
+                                 "Wrong family",
+                                 "Unidentified" 
+                                 )) %>%
+  rename( `Wholeskim assignment` = wholeskim,
+          `Holi assignment`= holi) %>%
+  mutate(holi_class = ifelse(`Holi assignment` %in% c(
+      "Target species",
+      "Target genus",
+      "Target family",
+      "Higher taxon"
+    ),
+    "ok",
+    ifelse(`Holi assignment` == "Unidentified",
+      "Unidentified",
+      ifelse(`Holi assignment` == "Total",
+        NA, ifelse(`Holi assignment` %in% c("Wrong species/Target genus",
+                                            "Wrong genus/Target family"),
+                   "partially wrong","wrong")
+      )
+    )
+    ),
+    wholeskim_class = ifelse(`Wholeskim assignment` %in% c(
+      "Target species",
+      "Target genus",
+      "Target family",
+      "Higher taxon"
+    ),
+    "ok",
+    ifelse(`Wholeskim assignment` == "Unidentified",
+      "Unidentified",
+      ifelse(`Wholeskim assignment` == "Total",
+        NA,ifelse(`Wholeskim assignment` %in% c("Wrong species/Target genus",
+                                                "Wrong genus/Target family"),
+                   "partially wrong","wrong")
+      )
+    )
+    ),
+    Assignments = ifelse(is.na(holi_class) | is.na(wholeskim_class), NA,
+      ifelse(holi_class == "ok" & wholeskim_class == "ok", "Both good",
+        ifelse(holi_class == "wrong" & wholeskim_class == "wrong",
+          "Both wrong",
+          ifelse(holi_class == "partially wrong" & 
+                   wholeskim_class == "partially wrong", "Both partially wrong",
+          ifelse(holi_class == "Unidentified" |
+            wholeskim_class == "Unidentified",
+          "Unidentified", "Different"
+          )
+          )
+        )
+      )
+    ),
+    Assignments = factor(Assignments, levels = congruence_level)) %>%
+ggplot(aes(x = `Wholeskim assignment`, y = `Holi assignment`)) +
+  geom_tile(aes(fill = Assignments, alpha = Percent)) +
+  geom_text(
+    aes(
+      label = round(Percent, 2),
+      col = ifelse(abs(Percent - 50) > 30, Percent, 100)
+    ),
+    size = 2,
+    show.legend = FALSE,
+  ) +
+  scale_fill_manual(
+    values = c(
+      `Both good` = "green", Different = "yellow",
+      Unidentified = "black", 
+      `Both partially wrong`= "orange",
+      `Both wrong` = "red"
+    ),
+    na.value = "blue",
+    limits = congruence_level[-1]
+  ) +
+  scale_color_gradient(high = "white", low = "black") +
+  scale_alpha_continuous(trans = "sqrt") +
+  theme_classic() +
+  theme(
+    axis.text = element_text(colour = assign_color),
+    axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, colour = assign_color)
+  ) +
+  coord_fixed() -> confusion_matrix_plot
+```
+
+```{r}
+ggsave("results/figures/confusion_matrix.tiff",confusion_matrix_plot,dpi=300)
+ggsave("results/figures/confusion_matrix.png",confusion_matrix_plot,dpi=300)
+
+confusion_matrix_plot
 ```
