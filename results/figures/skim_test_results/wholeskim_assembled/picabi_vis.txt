@@ -1,0 +1,8 @@
+picabi_c	unid	102571
+picabi_c	off_target	26450
+picabi_c	off_genus	1458
+picabi_c	off_family	20
+picabi_c	target	0
+picabi_c	higher_taxa	13789
+picabi_c	higher_genus	0
+picabi_c	higher_family	0

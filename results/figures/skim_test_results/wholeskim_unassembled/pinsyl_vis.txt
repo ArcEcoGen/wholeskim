@@ -1,0 +1,8 @@
+pinsyl_wu	unid	139204
+pinsyl_wu	off_target	101
+pinsyl_wu	off_genus	2349
+pinsyl_wu	off_family	0
+pinsyl_wu	target	13362
+pinsyl_wu	higher_taxa	21435
+pinsyl_wu	higher_genus	788
+pinsyl_wu	higher_family	269

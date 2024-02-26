@@ -1,0 +1,8 @@
+betnan_wu	unid	121729
+betnan_wu	off_target	0
+betnan_wu	off_genus	5063
+betnan_wu	off_family	255
+betnan_wu	target	22619
+betnan_wu	higher_taxa	17618
+betnan_wu	higher_genus	34749
+betnan_wu	higher_family	1928

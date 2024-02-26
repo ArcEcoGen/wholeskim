@@ -1,0 +1,8 @@
+avefle_c	unid	137001
+avefle_c	off_target	14927
+avefle_c	off_genus	0
+avefle_c	off_family	5553
+avefle_c	target	20687
+avefle_c	higher_taxa	31601
+avefle_c	higher_genus	0
+avefle_c	higher_family	60

@@ -1,0 +1,8 @@
+thealp_wu	unid	161382
+thealp_wu	off_target	354
+thealp_wu	off_genus	0
+thealp_wu	off_family	0
+thealp_wu	target	0
+thealp_wu	higher_taxa	8979
+thealp_wu	higher_genus	0
+thealp_wu	higher_family	0

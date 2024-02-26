@@ -1,0 +1,8 @@
+salret_c	unid	101589
+salret_c	off_target	12495
+salret_c	off_genus	10897
+salret_c	off_family	29
+salret_c	target	0
+salret_c	higher_taxa	44261
+salret_c	higher_genus	27364
+salret_c	higher_family	0

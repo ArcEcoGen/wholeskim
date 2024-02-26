@@ -1,0 +1,8 @@
+calpal_wu	unid	160605
+calpal_wu	off_target	425
+calpal_wu	off_genus	3544
+calpal_wu	off_family	0
+calpal_wu	target	23809
+calpal_wu	higher_taxa	35462
+calpal_wu	higher_genus	21919
+calpal_wu	higher_family	87

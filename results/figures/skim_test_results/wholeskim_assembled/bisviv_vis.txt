@@ -1,0 +1,8 @@
+bisviv_c	unid	117308
+bisviv_c	off_target	15196
+bisviv_c	off_genus	7065
+bisviv_c	off_family	228
+bisviv_c	target	7983
+bisviv_c	higher_taxa	24393
+bisviv_c	higher_genus	12414
+bisviv_c	higher_family	0

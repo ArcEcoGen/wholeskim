@@ -1,0 +1,8 @@
+bisviv_wu	unid	124730
+bisviv_wu	off_target	67
+bisviv_wu	off_genus	13397
+bisviv_wu	off_family	166
+bisviv_wu	target	12012
+bisviv_wu	higher_taxa	14001
+bisviv_wu	higher_genus	20214
+bisviv_wu	higher_family	0

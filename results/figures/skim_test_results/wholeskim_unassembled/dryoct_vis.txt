@@ -1,0 +1,8 @@
+dryoct_wu	unid	112316
+dryoct_wu	off_target	62
+dryoct_wu	off_genus	4663
+dryoct_wu	off_family	595
+dryoct_wu	target	7898
+dryoct_wu	higher_taxa	39114
+dryoct_wu	higher_genus	50991
+dryoct_wu	higher_family	2362

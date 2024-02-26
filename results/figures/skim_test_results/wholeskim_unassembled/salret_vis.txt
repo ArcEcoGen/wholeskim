@@ -1,0 +1,8 @@
+salret_wu	unid	115015
+salret_wu	off_target	312
+salret_wu	off_genus	10258
+salret_wu	off_family	81
+salret_wu	target	0
+salret_wu	higher_taxa	32240
+salret_wu	higher_genus	38729
+salret_wu	higher_family	0

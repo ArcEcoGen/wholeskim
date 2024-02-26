@@ -1,0 +1,8 @@
+thealp_c	unid	129505
+thealp_c	off_target	18230
+thealp_c	off_genus	0
+thealp_c	off_family	0
+thealp_c	target	0
+thealp_c	higher_taxa	22980
+thealp_c	higher_genus	0
+thealp_c	higher_family	0

@@ -1,0 +1,8 @@
+betpub_c	unid	151477
+betpub_c	off_target	21044
+betpub_c	off_genus	14096
+betpub_c	off_family	349
+betpub_c	target	7474
+betpub_c	higher_taxa	47862
+betpub_c	higher_genus	11596
+betpub_c	higher_family	993

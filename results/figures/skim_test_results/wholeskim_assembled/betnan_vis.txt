@@ -1,0 +1,8 @@
+betnan_c	unid	118941
+betnan_c	off_target	17059
+betnan_c	off_genus	5696
+betnan_c	off_family	225
+betnan_c	target	12401
+betnan_c	higher_taxa	40331
+betnan_c	higher_genus	8706
+betnan_c	higher_family	602

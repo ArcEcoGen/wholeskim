@@ -26,3 +26,5 @@ p <- ggplot(kmer_full_compare, aes(contig_kmer, wholeskim_kmer, label=taxid)) + 
   geom_abline()
 
 ggplotly(p)
+
+# PLot the ratio per family (bar plot)

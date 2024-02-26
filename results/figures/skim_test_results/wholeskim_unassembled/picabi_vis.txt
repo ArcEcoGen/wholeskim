@@ -1,0 +1,8 @@
+picabi_wu	unid	114028
+picabi_wu	off_target	83
+picabi_wu	off_genus	6674
+picabi_wu	off_family	44
+picabi_wu	target	3244
+picabi_wu	higher_taxa	6103
+picabi_wu	higher_genus	13606
+picabi_wu	higher_family	506

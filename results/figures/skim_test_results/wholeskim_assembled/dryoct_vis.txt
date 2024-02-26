@@ -1,0 +1,8 @@
+dryoct_c	unid	98144
+dryoct_c	off_target	13561
+dryoct_c	off_genus	3839
+dryoct_c	off_family	535
+dryoct_c	target	5486
+dryoct_c	higher_taxa	86354
+dryoct_c	higher_genus	9658
+dryoct_c	higher_family	424

@@ -1,0 +1,8 @@
+betpub_wu	unid	159467
+betpub_wu	off_target	53
+betpub_wu	off_genus	19518
+betpub_wu	off_family	409
+betpub_wu	target	9913
+betpub_wu	higher_taxa	20394
+betpub_wu	higher_genus	42213
+betpub_wu	higher_family	2924

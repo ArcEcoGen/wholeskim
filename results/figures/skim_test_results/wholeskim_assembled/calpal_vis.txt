@@ -1,0 +1,8 @@
+calpal_c	unid	150589
+calpal_c	off_target	19716
+calpal_c	off_genus	1955
+calpal_c	off_family	1403
+calpal_c	target	18328
+calpal_c	higher_taxa	41930
+calpal_c	higher_genus	11843
+calpal_c	higher_family	87

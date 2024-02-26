@@ -1,0 +1,8 @@
+vaculi_wu	unid	107651
+vaculi_wu	off_target	196
+vaculi_wu	off_genus	1344
+vaculi_wu	off_family	162
+vaculi_wu	target	42470
+vaculi_wu	higher_taxa	15638
+vaculi_wu	higher_genus	13568
+vaculi_wu	higher_family	694

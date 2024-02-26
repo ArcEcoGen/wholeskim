@@ -1,0 +1,8 @@
+pinsyl_c	unid	125316
+pinsyl_c	off_target	28283
+pinsyl_c	off_genus	1070
+pinsyl_c	off_family	64
+pinsyl_c	target	1910
+pinsyl_c	higher_taxa	20842
+pinsyl_c	higher_genus	23
+pinsyl_c	higher_family	0

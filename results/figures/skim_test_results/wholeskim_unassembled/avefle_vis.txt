@@ -1,0 +1,8 @@
+avefle_wu	unid	150095
+avefle_wu	off_target	36
+avefle_wu	off_genus	0
+avefle_wu	off_family	2260
+avefle_wu	target	33802
+avefle_wu	higher_taxa	23560
+avefle_wu	higher_genus	0
+avefle_wu	higher_family	76
