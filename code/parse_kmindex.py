@@ -132,7 +132,7 @@ for kmind in args.kmindex:
     for l in line_splitter(kmind, True):
 
         # Kmindex 0.2.0 adds "name:" to the beginning of each read
-        #read_name = ":".join(l[0].split(":")[1:])
+        read_name = ":".join(l[0].split(":")[1:])
 
         site_list = []
         for i, n in enumerate(l[1:]):
@@ -143,10 +143,10 @@ for kmind in args.kmindex:
         # If there are hits
         if site_list:
             # Checks if the read has already been added to the dictionary
-            if l[0] in kmindex_dict:
-                kmindex_dict[l[0]] += site_list
+            if read_name in kmindex_dict:
+                kmindex_dict[read_name] += site_list
             else:
-                kmindex_dict[l[0]] = site_list
+                kmindex_dict[read_name] = site_list
 
 '''
         else:
