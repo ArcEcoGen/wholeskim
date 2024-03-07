@@ -18,7 +18,9 @@ ggplot(kmer_full_compare, aes(x=ratio)) +
   theme_bw() +
   theme(axis.line = element_line(colour = "black"),
         panel.border = element_blank(),
-        text=element_text(size=17))
+        text=element_text(size=17),
+        axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0))) +
+  ggtitle("A.")
 
 p <- ggplot(kmer_full_compare, aes(contig_kmer, wholeskim_kmer, label=taxid)) + geom_point() + 
   scale_x_continuous(trans="log") +

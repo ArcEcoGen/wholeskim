@@ -4,7 +4,7 @@ library(viridis)
 library(ggpubr)
 require(grid)
 
-data_skims <-  read.csv("~/Documents/paper_2/wholeskim/intermediate/skims_test/plot_min20.tsv", header=FALSE, sep = "\t", na.strings = "NOT")
+data_skims <-  read.csv("/home/lukedane/Documents/paper_2/wholeskim/results/figures/skim_test_results/overall.tsv", header=FALSE, sep = "\t", na.strings = "NOT")
 
 data_skims <- group_by(data_skims, V1) %>% 
   mutate(percent = V3/sum(V3)) %>%
@@ -24,18 +24,26 @@ plot_corr <- function(prefix, title_string, yform) {
   init_data <- data_skims[str_detect(data_skims$V1, prefix), ]
   temp_data <- init_data[!(init_data$V2=="unid"),]
   temp_data <- droplevels(temp_data)
-  
-  facet_labs <- c("wholeskim\n(full)", "Holi", "wholeskim\n(contigs)", "wholeskims\n(subset)")
+
+  facet_labs <- c("Holi\nassembled", "wholeskim\nunassembled", "wholeskim\nassembled")
   names(facet_labs) <- levels(factor(temp_data$V1))
+  print(levels(factor(temp_data$V1)))
   
   scale_axis <- function(x) sprintf(yform, x)
   
   p_plot <- ggplot(temp_data, aes(fill = V2, y=percent, x=grouped)) + 
     geom_bar(position="stack", stat="identity", show.legend = TRUE) + 
     scale_fill_manual(values=(c("#440154FF", "#39568CFF", "#1F968BFF","#73D055FF","#fde725FF", "#f68f46ff", "#ff5d5dff")), 
-                      labels=c("Higher target level", "Target family", "Target genus", "Target species","Confamilial taxa", "Congeneric species", "Misassignment"), 
+                      labels=c("Higher target level", 
+                               "Target family", 
+                               "Target genus", 
+                               "Target species",
+                               "Incorrect genus,\ntarget family", 
+                               "Incorrect species,\ntarget genus", 
+                               "Incorrect family"), 
                       name="Assignment", drop = FALSE) + 
-    scale_x_discrete(labels = c("wholeskim\n(full)", "Holi", "wholeskim\n(contigs)", "wholeskims\n(subset)")) + ggtitle(title_string) +
+    #scale_x_discrete(labels = c("wholeskim\n(full)", "Holi", "wholeskim\n(contigs)", "wholeskims\n(subset)")) + 
+    ggtitle(title_string) +
     theme_bw() +
     theme(axis.title.x = element_blank(),
           axis.text.x = element_blank(),
@@ -51,10 +59,10 @@ plot_corr <- function(prefix, title_string, yform) {
   return(p_plot)
 }
 
-p_betnan <- plot_corr("betnan", "Betula nana", "%.1f")
-p_avefle <- plot_corr("avefle", "Avenella flexuosa", "%.2f")
-p_salret <- plot_corr("salret", "Salix retusa", "%.1f")
-p_thealp <- plot_corr("thealp", "Thesium alpinum", "%.2f")
+p_betnan <- plot_corr("betnan", "A. Betula nana", "%.1f")
+p_avefle <- plot_corr("avefle", "B. Avenella flexuosa", "%.2f")
+p_salret <- plot_corr("salret", "C. Salix retusa", "%.1f")
+p_thealp <- plot_corr("thealp", "D. Thesium alpinum", "%.2f")
 
 figure <- ggarrange(p_betnan, p_avefle,
                     p_salret, p_thealp,
@@ -87,7 +95,7 @@ skim_order <- c("vaculino_vacc_no_erica",
                 "vaculi14",
                 "vaculi15")
 
-oneout_skims <-  read.csv("~/Documents/paper_2/wholeskim/results/figures/erica_dropout/overall.txt", header=FALSE, sep = "\t", na.strings = "NOT")
+oneout_skims <-  read.csv("~/Documents/paper_2/wholeskim/scratch/old_erica_dropout/overall.txt", header=FALSE, sep = "\t", na.strings = "NOT")
 oneout_skims <- group_by(oneout_skims, V1) %>% 
   mutate(percent = V3/sum(V3)) %>%
   mutate(grouped = ifelse(str_detect(V2, "higher|\\btarget"), paste("corr_", "", sep=""), paste("incorr_", "", sep=""))) %>%

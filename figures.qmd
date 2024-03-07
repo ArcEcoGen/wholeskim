@@ -343,11 +343,11 @@ data %>%
 ```
 
 | Species           | Section   | Location | 2n  | PL  | GS (2C pg)± SD | 1Cx  | standard        |
-|---------|---------|---------|---------|---------|---------|---------|---------|
+|-------------------|-----------|----------|-----|-----|----------------|------|-----------------|
 | V. uliginosum (1) | Vaccinium | Andorra  | 24  | 2x  | 1.47 ± 0.11    | 0.74 | Petunia hybrida |
 | V. uliginosum (2) | Vaccinium | Turkey   | 24  | 2x  | 1.34 ± 0.02    | 0.67 | Petunia hybrida |
 
-Sultana, N.; Pascual-Díaz, J.P.; Gers, A.; Ilga, K.; Serçe, S.; Vitales, D.; Garcia, S. Contribution to the Knowledge of Genome Size Evolution in Edible Blueberries (genus Vaccinium). *J. Berry Res.* **2020**, *10*, 243–257.
+Sultana, N.; Pascual-Díaz, J.P.; Gers, A.; Ilga, K.; Serçe, S.; Vitales, D.; Garcia, S. Contribution to the Knowledge of Genome Size Evolution in Edible Blueberries (genus Vaccinium). *J. Berry Res.* **2020**, *10*, 243--257.
 
 ```{r}
 expected_kmers <- function(nreads, gsize, k, read_size = 101, eseq = 3.5e-3) {
@@ -385,13 +385,23 @@ summary(fit)
 ```{r}
 data_kmer %>%
   ggplot(aes(x=read_count,y=kmer_count)) +
-  geom_point() +
   geom_function(fun = function(x) expected_kmers(x,coef(fit)['genome_size'],
-                                                 33,eseq = 4.4e-3), 
-                colour = "red")+
-  geom_function(fun = function(x) expected_kmers(x,coef(fit)['genome_size'],33,eseq = 0), 
-                colour = "blue") +
-  geom_vline(xintercept = coef(fit)['genome_size']/101, lty=2)
+                                                 31,eseq = 4.4e-3),
+                colour = "red", linewidth=3, alpha=0.7)+
+  geom_function(fun = function(x) expected_kmers(x,coef(fit)['genome_size'],31,eseq = 0), 
+                colour = "blue", linewidth=3, alpha=0.7) +
+  geom_point(size=2.5) +
+  theme_bw() +
+  theme(axis.line = element_line(colour = "black"),
+        panel.border = element_blank(),
+        text=element_text(size=17)) +
+  scale_x_continuous(labels=scales::unit_format(unit="M", scale=1e-6)) +
+  scale_y_continuous(labels=scales::unit_format(unit="B", scale=1e-9)) +
+  xlab("Read count") +
+  ylab("Unique k-mer count") +
+  ggtitle("B.")
+  
+  #geom_vline(xintercept = coef(fit)['genome_size']/101, lty=2)
 ```
 
 ```{r}
@@ -434,17 +444,64 @@ data <- read_csv("results/data/vaccinium_dropout.csv", show_col_types = FALSE) %
 ```
 
 ```{r}
-data %>%
+facet_labs = c("Target species",
+               "Target genus",
+               "Target family",
+               "Higher target level",
+               "Unidentified",
+               "Misassignment",
+               "Target genus \n incorrect species",
+               "Target family \n incorrect genus")
+names(facet_labs) <- levels(factor(data$category))
+
+#data_merged <- group_by(data, sample) %>%
+#  mutate(false_assign = off_target + off_family) %>%
+#  ungroup()
+
+kmer_vaccinium_plot <- data %>%
   left_join(data_kmer,by=c(library_read_count="read_count")) %>%
   group_by(sample) %>%
   mutate(freq = read_count / sum(read_count)) %>%
   ungroup() %>%
-  #filter(category %in% c("target","off_family")) %>%
+  filter(category %in% c("target","higher_genus", "unid", "off_family", "off_target", "off_genus")) %>%
   ggplot(aes(x=kmer_count,y=freq, col = category)) +
   stat_smooth(aes(group = interaction(kmer_count < 6e8,category)),method = lm) +
-  geom_point() +
-  ylab("Frequence of targer") +
-  facet_wrap(. ~ category, scale = "free_y")
+  geom_point(size=2.5) +
+  ylab("Proportion of assignment") +
+  xlab("k-mer count of V. uliginosum in reference") +
+  facet_wrap(. ~ category, scale = "free_y", labeller = labeller(category=facet_labs)) +
+  scale_color_manual(values=(c("#73D055FF",
+                               "#1F968BFF",
+                               "#606361FF", 
+                               "#ff5d5dff",
+                               "#f68f46ff",
+                               "#fde725FF"))) +
+  theme_bw() +
+  theme(axis.line = element_line(colour = "black"),
+        panel.border = element_blank(),
+        axis.title.x = element_text(size=28),
+        axis.title.y = element_text(size=28),
+        axis.text.x = element_text(size=22),
+        axis.text.y = element_text(size=22),
+        strip.text = element_text(size=26),
+        legend.position = "none",
+        panel.spacing = unit(2, "lines"),
+        plot.margin = margin(0.2,1,0.2,0.2, "cm")) +
+  scale_x_continuous(breaks = seq(0, 1.2e9, 6e8), 
+                     limits = c(0,1.2e9),
+                     labels = scales::unit_format(unit="B", scale=1e-9))
+
+#ggsave("results/figures/kmer_vaccinium.tiff",kmer_vaccinium_plot,dpi=300, width = 24, height=7, units="cm")
+ggsave("results/figures/kmer_vaccinium.png",kmer_vaccinium_plot,dpi=300, width = 24, height=7, units="cm")
+
+kmer_vaccinium_plot
+```
+
+```{r}
+
+```
+
+```         
 ```
 
 ```{r}
