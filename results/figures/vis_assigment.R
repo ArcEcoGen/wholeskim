@@ -159,12 +159,43 @@ vaccfig <- ggarrange(p_plot,
                      ncol = 1,
                      nrow = 1,
                      common.legend = TRUE,
-                     legend="right",
+                     legend="right",http://127.0.0.1:31967/graphics/5b7831c5-dcea-4139-9cdf-99fa6e676e3c.png
                      heights = c(1,1))
 
 annotate_figure(vaccfig, left = textGrob("Proportion of reads", rot = 90, vjust = 0.5, gp = gpar(cex = 2.4)),
                 bottom = textGrob("Database composition", vjust = 0.3, hjust=0.7, gp = gpar(cex = 2.4)))
 
-####### Genome completeness
+####### Workflow comparison
 
+data_workflows <- read.delim("~/Documents/paper_2/wholeskim/results/figures/read_comparison/workflow_totals.csv", sep="\t")
+
+no_unid <- data_workflows[!(data_workflows$category=="Unidentified"),]
+
+no_unid$category <- factor(no_unid$category, levels = c("Target",
+                                                      "Target Genus",
+                                                      "Target Family",
+                                                      "Higher Tax. Level",
+                                                      "Congeneric species",
+                                                      "Confamilial Taxa",
+                                                      "Misassigned"))
+
+ggplot(no_unid, aes(y=num_reads, x=category, fill=workflow)) +
+  geom_bar(position="dodge", stat="identity", show.legend = TRUE) +
+  theme_bw() +
+  scale_fill_manual(values=(c("#009E73", "#F0E442", "#56B4E9")),
+                    labels=c("Both workflows", "Only\nHoli-assembled", "Only\nwholeskim-\nunassmebled"),
+                    name="Workflow") + 
+  scale_x_discrete(labels = c("Target species",
+                              "Target genus",
+                              "Target family",
+                              "Higher target level",
+                              "Incorrect species,\ntarget genus",
+                              "Incorrect genus,\ntarget family",
+                              "Incorrect family")) +
+  theme(panel.border = element_blank(),
+        strip.background = element_rect(fill = NA, color = "white"),
+        text=element_text(size=17),
+        axis.line = element_line(colour = "black")) +
+  xlab("Assignment category") + 
+  ylab("Number of reads")
 

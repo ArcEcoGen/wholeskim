@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import sys
+#import sys
 import argparse
 import re
 
@@ -52,14 +52,14 @@ for tokens in line_splitter(args.names):
 	#Ignores synonyms, blast names, etc.
 	if tokens[6] == "scientific name":
 		name_dict[tokens[0]] = tokens[2]
-print("Done loading taxid to name data - {}".format(len(name_dict)), file=sys.stderr)
+#print("Done loading taxid to name data - {}".format(len(name_dict)), file=sys.stderr)
 name_dict["0"] = "unid"
 
 #Makes the parent node dictionary {taxid : (parent_taxid, taxonomic_level)}
 parent_dict = {}
 for tokens in line_splitter(args.nodes):
 	parent_dict[tokens[0]] = (tokens[2], tokens[4])
-print("Done loading parent data - {}".format(len(parent_dict)), file=sys.stderr)
+#print("Done loading parent data - {}".format(len(parent_dict)), file=sys.stderr)
 
 #Traces the path of a given taxid to root node, compiling taxids together
 def collect_taxids(ti):
@@ -81,7 +81,7 @@ def collect_taxids(ti):
                     #print("Taxid: {} match found in merged.dmp".format(ti), file=sys.stderr)
                     break
             if not found:
-                print("Taxid: {} not found in merged.dmp! Try downloading an updated taxdump".format(ti), file=sys.stderr)
+                #print("Taxid: {} not found in merged.dmp! Try downloading an updated taxdump".format(ti), file=sys.stderr)
                 break
     return return_taxids[::-1]
 
@@ -131,9 +131,6 @@ for kmind in args.kmindex:
     # Loops through reads
     for l in line_splitter(kmind, True):
 
-        # Kmindex 0.2.0 adds "name:" to the beginning of each read
-        read_name = ":".join(l[0].split(":")[1:])
-
         site_list = []
         for i, n in enumerate(l[1:]):
             # Only adds to list if a match is greater than n
@@ -142,30 +139,18 @@ for kmind in args.kmindex:
     
         # If there are hits
         if site_list:
+            # Kmindex 0.2.0 adds "index_name:" to the beginning of each read
+            read_name = ":".join(l[0].split(":")[1:])
             # Checks if the read has already been added to the dictionary
             if read_name in kmindex_dict:
                 kmindex_dict[read_name] += site_list
             else:
                 kmindex_dict[read_name] = site_list
 
-'''
-        else:
-             # Checks if the read has already been added to the dictionary
-            if read_name not in kmindex_dict:
-                kmindex_dict[read_name] = []
-'''
-                
-
 # Makes a list of reads of interest and sorts hits
 reads_list = []
 for n in kmindex_dict.keys():
-
-    # If the read hits are empty, adds empty hit
-    if kmindex_dict[n] == []:
-        kmindex_dict[n] = [(0.0, "1")]
-    # Else sorts the hits
-    else:
-        kmindex_dict[n].sort(key = lambda x : x[0], reverse=True)
+    kmindex_dict[n].sort(key = lambda x : x[0], reverse=True)
 
     # Make list of reads
     if re.match(args.search_ID, n):
@@ -178,16 +163,9 @@ fulltax_dict = {}
 for r in reads_list:
     # If only one hit, print it
     if len(kmindex_dict[r]) == 1:
-        # If match is empty
-        if kmindex_dict[r][0][1] == "1":
-            tid = "0"
-            matches = 0
-            max_ID = 0.0
-        # If there's only one match
-        else:
-            tid = taxa_dict[kmindex_dict[r][0][1]]
-            matches = 1
-            max_ID = kmindex_dict[r][0][0]    
+        tid = taxa_dict[kmindex_dict[r][0][1]]
+        matches = 1
+        max_ID = kmindex_dict[r][0][0]    
 
     # Else, get consensus taxonomy
     else:
@@ -234,6 +212,6 @@ for r in reads_list:
                 #print("Taxid: {} match found in merged.dmp".format(ti), file=sys.stderr)
                 break
         if not found:
-            print("Taxid: {} not found in merged.dmp! Try downloading an updated taxdump".format(ti), file=sys.stderr)
+            #print("Taxid: {} not found in merged.dmp! Try downloading an updated taxdump".format(ti), file=sys.stderr)
             break
         print(f"{first_columns}\t{max_ID}\t{matches}\t{tid}\tunk_{tid}", end="\n")

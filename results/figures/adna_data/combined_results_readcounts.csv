@@ -1,0 +1,232 @@
+num_reads	tax_id	scientific_name	sample	workflow
+96960	1648017	Hordeinae	IG4	wholeskim
+46759	241778	Apioideae	IG4	wholeskim
+41082	1437183	Mesangiospermae	IG4	wholeskim
+32755	13329	Achillea millefolium	IG4	wholeskim
+26705	38820	Poales	IG4	wholeskim
+23192	220462	Leymus arenarius	IG4	wholeskim
+18002	75091	Rubus saxatilis	IG4	wholeskim
+16425	58023	Tracheophyta	IG4	wholeskim
+15689	78536	Euphyllophyta	IG4	wholeskim
+15282	48027	Anthriscus sylvestris	IG4	wholeskim
+14098	147368	Pooideae	IG4	wholeskim
+12945	52709	Elymus trachycaulus	IG4	wholeskim
+11798	52713	Leymus	IG4	wholeskim
+11298	48032	Carum carvi	IG4	wholeskim
+10512	183794	Leymus mollis	IG4	wholeskim
+9624	1437201	Pentapetalae	IG4	wholeskim
+9121	1120086	Achillea millefolium subsp. borealis	IG4	wholeskim
+8201	4605	Festuca	IG4	wholeskim
+7574	435792	Leymus innovatus	IG4	wholeskim
+7076	23216	Rubus	IG4	wholeskim
+5848	464075	Festuca richardsonii	IG4	wholeskim
+5776	52153	Festuca rubra	IG4	wholeskim
+5156	13328	Achillea	IG4	wholeskim
+3538	1652081	Poeae Chloroplast Group 2 (Poeae type)	IG4	wholeskim
+3273	376113	Hordelymus europaeus	IG4	wholeskim
+3273	147389	Triticeae	IG4	wholeskim
+2639	1648038	Triticodae	IG4	wholeskim
+2016	15492	Elymus	IG4	wholeskim
+1997	1301364	Festuca prolifera	IG4	wholeskim
+1866	58024	Spermatophyta	IG4	wholeskim
+241381	3504	Betula	GB6	wholeskim
+103508	216990	Betula nana	GB6	wholeskim
+75173	38787	Betula pubescens	GB6	wholeskim
+54425	717482	Betula nana subsp. exilis	GB6	wholeskim
+52433	1437183	Mesangiospermae	GB6	wholeskim
+49105	669861	Valeriana excelsa subsp. sambucifolia	GB6	wholeskim
+43112	241778	Apioideae	GB6	wholeskim
+36429	78536	Euphyllophyta	GB6	wholeskim
+30390	58023	Tracheophyta	GB6	wholeskim
+25457	1437201	Pentapetalae	GB6	wholeskim
+20153	3501	Urtica dioica	GB6	wholeskim
+19479	1648017	Hordeinae	GB6	wholeskim
+19043	15492	Elymus	GB6	wholeskim
+18080	216991	Betula humilis	GB6	wholeskim
+15637	48027	Anthriscus sylvestris	GB6	wholeskim
+10868	75091	Rubus saxatilis	GB6	wholeskim
+10787	48032	Carum carvi	GB6	wholeskim
+10628	3514	Betulaceae	GB6	wholeskim
+7331	129741	Elymus caninus	GB6	wholeskim
+7168	19952	Valeriana	GB6	wholeskim
+6032	1435599	Urtica dioica subsp. dioica	GB6	wholeskim
+5506	91835	fabids	GB6	wholeskim
+4888	165317	Veronica longifolia	GB6	wholeskim
+4876	23216	Rubus	GB6	wholeskim
+4285	721813	Maleae	GB6	wholeskim
+4051	58024	Spermatophyta	GB6	wholeskim
+4041	13055	Chamaenerion angustifolium	GB6	wholeskim
+3928	231681	Equisetum pratense	GB6	wholeskim
+3789	199171	Empetrum nigrum subsp. hermaphroditum	GB6	wholeskim
+3272	147389	Triticeae	GB6	wholeskim
+3119	91882	campanulids	GB6	wholeskim
+3062	15303	Alopecurus	GB6	wholeskim
+2996	3257	Equisetum	GB6	wholeskim
+2813	430624	Elymus fibrosus	GB6	wholeskim
+2742	430623	Elymus alaskanus	GB6	wholeskim
+2706	1435578	Urtica dioica subsp. sondenii	GB6	wholeskim
+2694	180772	Vaccinium vitis-idaea	GB6	wholeskim
+2621	13749	Vaccinium	GB6	wholeskim
+2571	147368	Pooideae	GB6	wholeskim
+2374	71274	asterids	GB6	wholeskim
+2359	180763	Vaccinium myrtillus	GB6	wholeskim
+2162	71275	rosids	GB6	wholeskim
+1989	52709	Elymus trachycaulus	GB6	wholeskim
+1828	1578718	Elymus sajanensis	GB6	wholeskim
+1792	38820	Poales	GB6	wholeskim
+1601	379956	Geranium sylvaticum	GB6	wholeskim
+145384	1648017	Hordeinae	GB5	wholeskim
+127941	3504	Betula	GB5	wholeskim
+117949	669861	Valeriana excelsa subsp. sambucifolia	GB5	wholeskim
+81801	1437183	Mesangiospermae	GB5	wholeskim
+54324	216990	Betula nana	GB5	wholeskim
+47033	15492	Elymus	GB5	wholeskim
+39757	241778	Apioideae	GB5	wholeskim
+38958	78536	Euphyllophyta	GB5	wholeskim
+37581	38787	Betula pubescens	GB5	wholeskim
+30383	58023	Tracheophyta	GB5	wholeskim
+28417	717482	Betula nana subsp. exilis	GB5	wholeskim
+26670	220462	Leymus arenarius	GB5	wholeskim
+21975	1437201	Pentapetalae	GB5	wholeskim
+19563	147368	Pooideae	GB5	wholeskim
+17980	52709	Elymus trachycaulus	GB5	wholeskim
+17848	129741	Elymus caninus	GB5	wholeskim
+17647	19952	Valeriana	GB5	wholeskim
+15331	3501	Urtica dioica	GB5	wholeskim
+14739	48027	Anthriscus sylvestris	GB5	wholeskim
+14487	15303	Alopecurus	GB5	wholeskim
+13440	4544	Poa	GB5	wholeskim
+12833	52713	Leymus	GB5	wholeskim
+11641	38820	Poales	GB5	wholeskim
+11584	183794	Leymus mollis	GB5	wholeskim
+11212	147389	Triticeae	GB5	wholeskim
+10034	48032	Carum carvi	GB5	wholeskim
+9282	13055	Chamaenerion angustifolium	GB5	wholeskim
+9273	216991	Betula humilis	GB5	wholeskim
+8407	435792	Leymus innovatus	GB5	wholeskim
+7020	430624	Elymus fibrosus	GB5	wholeskim
+6678	430623	Elymus alaskanus	GB5	wholeskim
+6209	3514	Betulaceae	GB5	wholeskim
+6105	91882	campanulids	GB5	wholeskim
+5985	4545	Poa pratensis	GB5	wholeskim
+5823	1227975	Alopecurus arundinaceus	GB5	wholeskim
+5708	75091	Rubus saxatilis	GB5	wholeskim
+5399	15304	Alopecurus pratensis	GB5	wholeskim
+4924	1648038	Triticodae	GB5	wholeskim
+4632	52159	Poa pratensis subsp. angustifolia	GB5	wholeskim
+4615	1652081	Poeae Chloroplast Group 2 (Poeae type)	GB5	wholeskim
+4613	1578718	Elymus sajanensis	GB5	wholeskim
+4579	58024	Spermatophyta	GB5	wholeskim
+4563	1435599	Urtica dioica subsp. dioica	GB5	wholeskim
+4283	764772	Poa pratensis subsp. irrigata	GB5	wholeskim
+3741	376113	Hordelymus europaeus	GB5	wholeskim
+3496	669672	Elymus macrourus	GB5	wholeskim
+3380	71274	asterids	GB5	wholeskim
+3336	379956	Geranium sylvaticum	GB5	wholeskim
+3315	91835	fabids	GB5	wholeskim
+3111	52830	Elymus sibiricus	GB5	wholeskim
+3051	1437197	Petrosaviidae	GB5	wholeskim
+3049	129748	Elymus mutabilis	GB5	wholeskim
+2573	23216	Rubus	GB5	wholeskim
+2321	238243	Chamaenerion	GB5	wholeskim
+2232	147387	Poeae	GB5	wholeskim
+2090	1435578	Urtica dioica subsp. sondenii	GB5	wholeskim
+2078	112517	Hordeum comosum	GB5	wholeskim
+2048	4447	Liliopsida	GB5	wholeskim
+2030	243113	Valeriana sitchensis	GB5	wholeskim
+1897	368342	Alopecurus magellanicus	GB5	wholeskim
+1741	2948570	Poodinae	GB5	wholeskim
+1732	231681	Equisetum pratense	GB5	wholeskim
+48967	1648017	Hordeinae	IG4	holi
+19803	241778	Apioideae	IG4	holi
+15696	38820	Poales	IG4	holi
+11351	13329	Achillea millefolium	IG4	holi
+7509	147368	Pooideae	IG4	holi
+7101	1437183	Mesangiospermae	IG4	holi
+6966	220462	Leymus arenarius	IG4	holi
+6715	52713	Leymus	IG4	holi
+5347	23216	Rubus	IG4	holi
+4637	75091	Rubus saxatilis	IG4	holi
+3978	435792	Leymus innovatus	IG4	holi
+3630	13328	Achillea	IG4	holi
+2660	4605	Festuca	IG4	holi
+2417	78536	Euphyllophyta	IG4	holi
+2303	147389	Triticeae	IG4	holi
+2292	1437201	Pentapetalae	IG4	holi
+2288	52709	Elymus trachycaulus	IG4	holi
+2216	48027	Anthriscus sylvestris	IG4	holi
+2181	1120086	Achillea millefolium subsp. borealis	IG4	holi
+2105	58023	Tracheophyta	IG4	holi
+2067	183794	Leymus mollis	IG4	holi
+1986	1648038	Triticodae	IG4	holi
+1875	48032	Carum carvi	IG4	holi
+1819	376113	Hordelymus europaeus	IG4	holi
+89529	3504	Betula	GB6	holi
+31600	216990	Betula nana	GB6	holi
+25190	241778	Apioideae	GB6	holi
+22585	717482	Betula nana subsp. exilis	GB6	holi
+21373	38787	Betula pubescens	GB6	holi
+20429	669861	Valeriana excelsa subsp. sambucifolia	GB6	holi
+13475	1437183	Mesangiospermae	GB6	holi
+11917	1648017	Hordeinae	GB6	holi
+11803	3514	Betulaceae	GB6	holi
+9929	15492	Elymus	GB6	holi
+9299	216991	Betula humilis	GB6	holi
+7838	3501	Urtica dioica	GB6	holi
+6618	1437201	Pentapetalae	GB6	holi
+5442	19952	Valeriana	GB6	holi
+4195	78536	Euphyllophyta	GB6	holi
+4128	23216	Rubus	GB6	holi
+3446	75091	Rubus saxatilis	GB6	holi
+3179	48027	Anthriscus sylvestris	GB6	holi
+3112	58023	Tracheophyta	GB6	holi
+2885	147389	Triticeae	GB6	holi
+2510	48032	Carum carvi	GB6	holi
+2264	165317	Veronica longifolia	GB6	holi
+2086	91835	fabids	GB6	holi
+1876	13749	Vaccinium	GB6	holi
+1726	721813	Maleae	GB6	holi
+1685	15303	Alopecurus	GB6	holi
+1652	147368	Pooideae	GB6	holi
+1571	1435599	Urtica dioica subsp. dioica	GB6	holi
+1502	199171	Empetrum nigrum subsp. hermaphroditum	GB6	holi
+77905	1648017	Hordeinae	GB5	holi
+49937	3504	Betula	GB5	holi
+49135	669861	Valeriana excelsa subsp. sambucifolia	GB5	holi
+23617	241778	Apioideae	GB5	holi
+22795	15492	Elymus	GB5	holi
+17533	1437183	Mesangiospermae	GB5	holi
+17370	216990	Betula nana	GB5	holi
+12960	19952	Valeriana	GB5	holi
+12618	147368	Pooideae	GB5	holi
+12380	717482	Betula nana subsp. exilis	GB5	holi
+11684	38787	Betula pubescens	GB5	holi
+8388	147389	Triticeae	GB5	holi
+8185	220462	Leymus arenarius	GB5	holi
+7910	15303	Alopecurus	GB5	holi
+7779	52713	Leymus	GB5	holi
+7208	38820	Poales	GB5	holi
+7051	3514	Betulaceae	GB5	holi
+6200	1437201	Pentapetalae	GB5	holi
+5814	3501	Urtica dioica	GB5	holi
+5504	4544	Poa	GB5	holi
+5220	216991	Betula humilis	GB5	holi
+4693	435792	Leymus innovatus	GB5	holi
+4330	78536	Euphyllophyta	GB5	holi
+3998	52159	Poa pratensis subsp. angustifolia	GB5	holi
+3876	1648038	Triticodae	GB5	holi
+3686	52709	Elymus trachycaulus	GB5	holi
+3013	48027	Anthriscus sylvestris	GB5	holi
+2915	13055	Chamaenerion angustifolium	GB5	holi
+2838	1652081	Poeae Chloroplast Group 2 (Poeae type)	GB5	holi
+2827	58023	Tracheophyta	GB5	holi
+2647	129741	Elymus caninus	GB5	holi
+2588	183794	Leymus mollis	GB5	holi
+2371	48032	Carum carvi	GB5	holi
+2194	23216	Rubus	GB5	holi
+2136	376113	Hordelymus europaeus	GB5	holi
+2042	379956	Geranium sylvaticum	GB5	holi
+1886	4545	Poa pratensis	GB5	holi
+1881	75091	Rubus saxatilis	GB5	holi
+1808	238243	Chamaenerion	GB5	holi
+1761	147387	Poeae	GB5	holi
