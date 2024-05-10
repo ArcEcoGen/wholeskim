@@ -9,12 +9,13 @@ parser.add_argument("-t", "--taxa", dest="taxa_file", type=str,  help="Taxa coun
 parser.add_argument("-n", "--names", dest="names", type=str, help="NCBI names.dmp file. Default is /usr/share/names.dmp", required=False, default="/usr/share/names.dmp")
 parser.add_argument("-s", "--nodes", dest="nodes", type=str, help="NCBI nodes.dmp file. Default is /usr/share/nodes.dmp", required=False, default="/usr/share/nodes.dmp")
 parser.add_argument("-m", "--merged", dest="merged", type=str, help="NCBI merged.dmp file. Default is  /usr/share/merged.dmp", required=False, default="/usr/share/merged.dmp")
-parser.add_argument("-c", "--cutoff", dest="cutoff", type=float, help="Minimum number of reads required (r)", required=True)
+parser.add_argument("-r", "--reads", dest="reads_total", type=float, help="Total number of reads in sample", required=True)
+parser.add_argument("-c", "--cutoff", dest="cutoff", type=float, help="Minimum proportion of reads required (r)", required=True)
 parser.add_argument("-a", "--sample", dest="sample", type=str, help="Output sample name", required=False, default="placeholder")
 args = parser.parse_args()
 
 ''' 
-./genus_collapse.py -t sample_count.tsv -c 1000 -n taxonomy/names.dmp -s taxonomy/nodes.dmp -m taxonomy/merged.dmp
+./genus_collapse.py -t sample_count.tsv -c 0.0001 -r 1000000 -n taxonomy/names.dmp -s taxonomy/nodes.dmp -m taxonomy/merged.dmp
 '''
 
 ###### UTILITIES #######
@@ -56,6 +57,16 @@ def get_genus(tid):
             tid = parent_dict[tid][0]
     raise Exception(f"Genus not found for {tid} {name_dict[tid]}")
 
+# Checks if taxid is a member of taxid_2
+def check_member(tid, tid_2):
+    while tid != "1":
+        if parent_dict[tid][0] == tid_2:
+            return True
+        else:
+            tid = parent_dict[tid][0]
+    return False
+
+
 ####### TAXONOMY SET UP ##########
 
 #Makes a dict of name and taxid {taxid : name}
@@ -80,9 +91,28 @@ reads_dict = {}
 
 # Populates dictionary if read_count >= cutoff
 for l in line_splitter(args.taxa_file):
-    # If there are suficient reads and it's at family level or lower
-    if int(l[0]) >= int(args.cutoff) and (taxon_or_lower(l[1], "family") or l[1] == "2"):
-        reads_dict[l[1]] = int(l[0])
+
+    # Check if taxid is in parent_dict, otherwise use merged
+    try:
+        if parent_dict[l[1]]:
+            curr_taxid = l[1]
+    except KeyError as e:
+        #Looks through merged.dmp for
+        for tokens in line_splitter(args.merged):
+            found = False
+            #If the taxid is found
+            if tokens[0] == l[1]:
+                curr_taxid = tokens[2]
+                found = True
+                #print("Taxid: {} match found in merged.dmp".format(ti), file=sys.stderr)
+                break
+        if not found:
+            print("Taxid: {} not found in merged.dmp! Try downloading an updated taxdump".format(ti), file=sys.stderr)
+            break
+
+    # If it's at family level or lower
+    if taxon_or_lower(curr_taxid, "family") or l[1] == "2":
+        reads_dict[curr_taxid] = int(l[0])
 
 # Final dictionary of everything collapsed at genus level {taxid : read_count}
 genus_dict = {}
@@ -103,6 +133,22 @@ for entry in reads_dict:
         else:
             genus_dict[genus_taxid] = reads_dict[entry]
 
+# Calculates number of Embyophyta reads
+embryo_reads = 0
+for entry in genus_dict:
+    if check_member(entry, "3193"):
+        embryo_reads += genus_dict[entry]
+
+# Sets minimum reads cutoff for taxa presence
+min_reads = embryo_reads * args.cutoff
+
+######### UGLY SETTING HARD CUTOFF ##############
+if min_reads < 10:
+    min_reads = 10
+
+print(f"Embryophta reads: {embryo_reads}\t{embryo_reads / args.reads_total}", file=sys.stderr)
+
 # output
 for ent in sorted(genus_dict, key=genus_dict.get):
-    print(f"{genus_dict[ent]}\t{genus_dict[ent] / ((args.cutoff + 0.1) * 10000)}\t{ent}\t{name_dict[ent]}\t{args.sample}")
+    if genus_dict[ent] >= min_reads:
+        print(f"{genus_dict[ent]}\t{genus_dict[ent] / embryo_reads}\t{genus_dict[ent] / args.reads_total}\t{ent}\t{name_dict[ent]}\t{args.sample}")
