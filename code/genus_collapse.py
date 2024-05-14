@@ -12,6 +12,7 @@ parser.add_argument("-m", "--merged", dest="merged", type=str, help="NCBI merged
 parser.add_argument("-r", "--reads", dest="reads_total", type=float, help="Total number of reads in sample", required=True)
 parser.add_argument("-c", "--cutoff", dest="cutoff", type=float, help="Minimum proportion of reads required (r)", required=True)
 parser.add_argument("-a", "--sample", dest="sample", type=str, help="Output sample name", required=False, default="placeholder")
+parser.add_argument("-p", "--all_taxa", dest="all_taxa", action="store_true", help="Output all genera rather than just plants (33090)", required=False)
 args = parser.parse_args()
 
 ''' 
@@ -119,8 +120,8 @@ genus_dict = {}
 
 # Loops though read_dict
 for entry in reads_dict:
-    # If at genus level or above (or Bacteria), just add to dictionary
-    if not taxon_lower(entry, "genus") or entry == "2":
+    # If at genus level or above, just add to dictionary
+    if not taxon_lower(entry, "genus"):
         if entry in genus_dict:
             genus_dict[entry] += reads_dict[entry]
         else:
@@ -147,8 +148,13 @@ if min_reads < 10:
     min_reads = 10
 
 print(f"Embryophta reads: {embryo_reads}\t{embryo_reads / args.reads_total}", file=sys.stderr)
+print(f"Min reads cutoff set to: {min_reads}", file=sys.stderr)
 
 # output
 for ent in sorted(genus_dict, key=genus_dict.get):
     if genus_dict[ent] >= min_reads:
+        # If only outputting just plant reads check if the entry is a member of 33090
+        if not args.all_taxa:
+            if not check_member(ent, "33090"):
+                continue
         print(f"{genus_dict[ent]}\t{genus_dict[ent] / embryo_reads}\t{genus_dict[ent] / args.reads_total}\t{ent}\t{name_dict[ent]}\t{args.sample}")
