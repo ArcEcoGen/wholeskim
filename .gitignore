@@ -17,3 +17,5 @@ Thumbs.db
 # -------------------------
 !.gitignore
 .Rproj.user
+build.log
+Dockerfile.old
